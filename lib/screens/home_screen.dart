@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
-  const new({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -278,7 +278,7 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: index,
         selectedItemColor: const Color(0xFF00E5FF),
         unselectedItemColor: Colors.white54,
-        selectedFontSize: 16,
+        selectedFontSize: 13,
         unselectedFontSize: 11,
         // type: BottomNavigationBarType.fixed,
         
