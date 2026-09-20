@@ -1,0 +1,45 @@
+lib/
+│
+├── main.dart
+│
+├── screens/
+│   ├── splash_screen.dart
+│   ├── onboarding_screen.dart
+│   ├── home_screen.dart
+│   ├── search_screen.dart
+│   ├── weather_details_screen.dart
+│   └── settings_screen.dart
+│
+├── widgets/
+│   ├── weather_card.dart
+│   └── search_bar.dart
+│
+├── models/
+│   └── weather_model.dart
+│
+├── services/
+│   └── weather_service.dart
+│
+├── theme/
+│   ├── app_theme.dart
+│   └── app_colors.dart
+│
+└── utils/
+    └── constants.dart
+
+
+
+
+1. Splash Screen
+       ↓
+2. Onboarding
+       ↓
+3. Home Screen
+    ↙       ↘
+Search      Details
+    ↓
+Search City
+       
+4. Weather Details
+
+5. Settings
