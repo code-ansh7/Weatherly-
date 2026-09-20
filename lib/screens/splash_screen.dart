@@ -1,7 +1,33 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weatherly/screens/onboarding_screen.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    Future.delayed(
+      const Duration(seconds: 2),
+      (){
+        Navigator.pushReplacement(
+          context, 
+          CupertinoPageRoute(
+            builder: (context) => const OnboardingScreen()
+          ),
+        );
+      }
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
