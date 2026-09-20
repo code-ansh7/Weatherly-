@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF061B33),
-
+      
       appBar: AppBar(
         elevation: 1, // 0 is better
         backgroundColor: const Color(0xFF061B33),
@@ -100,7 +100,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: double.infinity,
                 height: 240,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF163A5F),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      
+                      Color.fromARGB(255, 84, 139, 195),
+                      Color(0xFF163A5F),
+                    ]
+                  ),
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
@@ -134,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               const SizedBox(height: 4),
 
                               const Text(
-                                "Mon, 16 Sep",
+                                "Sun, 20 Sep",
                                 style: TextStyle(
                                   fontSize: 13,
                                   color: Colors.white70,
