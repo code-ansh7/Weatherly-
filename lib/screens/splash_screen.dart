@@ -63,6 +63,12 @@ class _SplashScreenState extends State<SplashScreen> {
               "More Than Weather",
               style: TextStyle(fontSize: 16, color: Colors.white70),
             ),
+
+            SizedBox(height: 40,),
+            CircularProgressIndicator(
+              color: Colors.white,
+              backgroundColor: Colors.cyan,
+            )
           ],
         ),
       ),
