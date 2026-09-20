@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weatherly/screens/onboarding_screen.dart';
 import 'package:weatherly/screens/splash_screen.dart';
 
 void main() {
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      // home: SplashScreen(),
+      home: OnboardingScreen(),
     );
   }
 }
