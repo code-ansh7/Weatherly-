@@ -8,16 +8,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   int index = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF061B33),
-      
+
       appBar: AppBar(
         elevation: 1, // 0 is better
-        backgroundColor: const Color(0xFF061B33),
+        backgroundColor: const Color.fromARGB(255, 43, 72, 104),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(25),
+            bottomLeft: Radius.circular(25),
+          ),
+        ),
 
         leading: IconButton(
           onPressed: () {},
@@ -104,10 +109,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      
                       Color.fromARGB(255, 84, 139, 195),
                       Color(0xFF163A5F),
-                    ]
+                    ],
                   ),
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
@@ -281,7 +285,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
       bottomNavigationBar: BottomNavigationBar(
-
         backgroundColor: const Color(0xFF081F38),
         currentIndex: index,
         selectedItemColor: const Color(0xFF00E5FF),
@@ -289,8 +292,8 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedFontSize: 13,
         unselectedFontSize: 11,
         // type: BottomNavigationBarType.fixed,
-        
-        onTap: (selectedIndex){
+
+        onTap: (selectedIndex) {
           setState(() {
             index = selectedIndex;
           });
