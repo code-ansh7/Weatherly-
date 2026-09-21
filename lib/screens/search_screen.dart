@@ -84,7 +84,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 // Search Box
                 TextField(
                   decoration: InputDecoration(
-                    hintText: "Search any city...",
+                    hintText: "Search city (e.g. Tilhar)",
                     hintStyle: const TextStyle(
                       color: Colors.white60,
                     ),

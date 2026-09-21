@@ -154,36 +154,46 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
 
                 const SizedBox(height: 20),
-                Container(
-                  height: 52,
-                  width: double.infinity,
 
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.10),
-                    borderRadius: BorderRadius.circular(16),
+                // Search Box
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: "Search city (e.g. Tilhar)",
+                    hintStyle: const TextStyle(color: Colors.white60),
 
-                    border: Border.all(color: Colors.white.withOpacity(0.12)),
-                  ),
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      color: Colors.cyanAccent,
+                    ),
 
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 14),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.12),
 
-                    child: Row(
-                      children: [
-                        Icon(Icons.search, color: Colors.cyanAccent, size: 28),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 17),
 
-                        SizedBox(width: 15),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide: BorderSide.none,
+                    ),
 
-                        Text(
-                          "Search city (e.g. Delhi)",
-                          style: TextStyle(fontSize: 15, color: Colors.white60),
-                        ),
-                      ],
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide: BorderSide(
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                    ),
+
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide: const BorderSide(
+                        color: Colors.cyanAccent,
+                        width: 1.5,
+                      ),
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 18),
+                const SizedBox(height: 22),
 
                 Container(
                   width: double.infinity,
