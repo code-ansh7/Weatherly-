@@ -22,11 +22,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF061B33),
-              Color(0xFF0D4773),
-              Color(0xFF123E63),
-            ],
+            colors: [Color(0xFF061B33), Color(0xFF0D4773), Color(0xFF123E63)],
           ),
         ),
 
@@ -35,6 +31,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Header
               Row(
                 children: [
                   Container(
@@ -43,35 +40,130 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       color: Colors.white.withOpacity(0.12),
                     ),
                     child: IconButton(
-                      onPressed: (){
+                      onPressed: () {
                         Navigator.pop(context);
-                      }, 
-                      icon: Icon(Icons.arrow_back, color: Colors.white,)
+                      },
+                      icon: Icon(Icons.arrow_back, color: Colors.white),
                     ),
                   ),
-                  SizedBox(width: 15,),
+                  SizedBox(width: 15),
 
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Settings",
+                      Text(
+                        "Settings",
                         style: TextStyle(
                           fontSize: 27,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white
+                          color: Colors.white,
                         ),
                       ),
 
-                      Text("Customize your Weatherly Experience !",
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.white70
-                        ),
-                      )
+                      Text(
+                        "Customize your Weatherly Experience !",
+                        style: TextStyle(fontSize: 13, color: Colors.white70),
+                      ),
                     ],
-                  )
+                  ),
                 ],
-              )
+              ),
+
+              SizedBox(height: 30),
+
+              Row(
+                children: [
+                  Icon(
+                    Icons.thermostat_outlined,
+                    color: Colors.cyanAccent,
+                    size: 21,
+                  ),
+
+                  SizedBox(width: 8),
+                  Text(
+                    "Temprature Unit",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 12),
+
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(7),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.10),
+                  borderRadius: BorderRadius.circular(18),
+                  border: Border.all(color: Colors.white.withOpacity(0.12)),
+                ),
+
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            isCelsius = true;
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 13),
+                          decoration: BoxDecoration(
+                            color: isCelsius
+                                ? Colors.cyanAccent
+                                : Colors.white.withOpacity(0.12),
+
+                            borderRadius: BorderRadius.circular(13),
+                          ),
+
+                          child: Center(
+                            child: Text("°C",
+                              style: TextStyle(
+                                color: isCelsius ? Color(0xFF061B33) : Colors.white70
+                              ),
+                            )
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(width: 7,),
+
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            isCelsius = false;
+                          });
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 13),
+                          decoration: BoxDecoration(
+                            color: !isCelsius
+                                ? Colors.cyanAccent
+                                : Colors.white.withOpacity(0.12),
+
+                            borderRadius: BorderRadius.circular(13),
+                          ),
+
+                          child: Center(
+                            child: Text("°F",
+                              style: TextStyle(
+                                color: !isCelsius ? Color(0xFF061B33) : Colors.white70
+                              ),
+                            )
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
