@@ -25,14 +25,14 @@ class OnboardingScreen extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: 150),
 
               // Heading
               const Text(
-                "Welcome to\nWeatherly",
+                "Welcome to",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 48,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                   height: 1.2, //Space b/w heading Gaps

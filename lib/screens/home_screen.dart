@@ -156,10 +156,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Spacer(),
 
-                          const Icon(
-                            Icons.more_horiz,
-                            color: Colors.white70,
-                            size: 24,
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.more_horiz_rounded,
+                              color: Colors.white70,
+                              size: 24,
+                            ),
                           ),
                         ],
                       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+final API = "e34a5eb0b4c5ff748fdf9219a63d224e";
 // 1. DATA MODEL
 class Weather {
   final String cityName;
@@ -28,7 +29,7 @@ class Weather {
 
 // 2. API SERVICE
 class WeatherService {
-  static const String _apiKey = 'e34a5eb0b4c5ff748fdf9219a63d224e';
+  static const String _apiKey = '';
 
   static const String _baseUrl =
       'api.openweathermap.org';
@@ -240,3 +241,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
