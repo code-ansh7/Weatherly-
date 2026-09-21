@@ -42,9 +42,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           color: Colors.white.withOpacity(0.12),
                         ),
                         child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
+                          onPressed: () {},
                           icon: Icon(Icons.arrow_back, color: Colors.white),
                         ),
                       ),

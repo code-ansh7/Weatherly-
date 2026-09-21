@@ -46,9 +46,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
+                        onPressed: () {},
                         icon: const Icon(
                           Icons.arrow_back,
                           color: Colors.white,
