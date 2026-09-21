@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weatherly/screens/search_screen.dart';
+import 'package:weatherly/screens/setting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -8,13 +10,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   int index = 0;
+
+ 
   @override
   Widget build(BuildContext context) {
+
+    final List<Widget> screens = [
+      homeBody(),
+      SearchScreen(),
+      SettingsScreen()
+    ];
+
     return Scaffold(
       backgroundColor: const Color(0xFF061B33),
 
-      appBar: AppBar(
+      appBar: index == 0 ? AppBar(
         elevation: 1, // 0 is better
         backgroundColor: const Color.fromARGB(255, 43, 72, 104),
         shape: const RoundedRectangleBorder(
@@ -39,8 +51,51 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
+      ) : null ,
+
+      body: screens[index],// Open Selected Screen
+
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: const Color(0xFF081F38),
+        currentIndex: index,
+        selectedItemColor: const Color(0xFF00E5FF),
+        unselectedItemColor: Colors.white54,
+        selectedFontSize: 13,
+        unselectedFontSize: 11,
+        // type: BottomNavigationBarType.fixed,
+
+        onTap: (selectedIndex) {
+          setState(() {
+            index = selectedIndex;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home),
+            label: "Home",
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search_outlined),
+            activeIcon: Icon(Icons.search),
+            label: "Search",
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_outlined),
+            activeIcon: Icon(Icons.settings),
+            label: "Settings",
+          ),
+        ],
       ),
-      body: SingleChildScrollView(
+    );
+  }
+
+
+  // Home Screen Content
+  Widget homeBody(){
+    return SingleChildScrollView(
         child: Padding(
           padding: EdgeInsetsGeometry.all(20),
           child: Column(
@@ -285,42 +340,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-      ),
-
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xFF081F38),
-        currentIndex: index,
-        selectedItemColor: const Color(0xFF00E5FF),
-        unselectedItemColor: Colors.white54,
-        selectedFontSize: 13,
-        unselectedFontSize: 11,
-        // type: BottomNavigationBarType.fixed,
-
-        onTap: (selectedIndex) {
-          setState(() {
-            index = selectedIndex;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
-            label: "Home",
-          ),
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search_outlined),
-            activeIcon: Icon(Icons.search),
-            label: "Search",
-          ),
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined),
-            activeIcon: Icon(Icons.settings),
-            label: "Settings",
-          ),
-        ],
-      ),
-    );
+      );
   }
 }
