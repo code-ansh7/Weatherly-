@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weatherly/screens/search_screen.dart';
+import 'package:weatherly/screens/setting_screen.dart';
 import 'package:weatherly/screens/splash_screen.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       // home: SplashScreen(),
       // home: OnboardingScreen(),
       // home: HomeScreen(),
-      home: SearchScreen(),
+      home: SettingsScreen(),
     );
   }
 }
