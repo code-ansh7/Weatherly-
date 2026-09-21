@@ -190,7 +190,7 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Row(
           children: [
 
-            // Location Icon
+            //Location Icon
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
