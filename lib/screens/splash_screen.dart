@@ -10,66 +10,128 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     Future.delayed(
-      const Duration(seconds: 2),
-      (){
+      const Duration(seconds: 3),
+      () {
         Navigator.pushReplacement(
-          context, 
+          context,
           CupertinoPageRoute(
-            builder: (context) => const OnboardingScreen()
+            builder: (context) => const OnboardingScreen(),
           ),
         );
-      }
+      },
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF061B33),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            //Icon
-            Row(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+
+        // Weatherly Theme Gradient
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFF061B33),
+              Color(0xFF0D4773),
+              Color(0xFF123E63),
+            ],
+          ),
+        ),
+
+        child: SafeArea(
+          child: Center(
+            child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.cloud, size: 60, color: Colors.cyanAccent),
-                Icon(Icons.wb_sunny, size: 35, color: Colors.amber),
+                // Weather Icon
+                Container(
+                  width: 115,
+                  height: 115,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.10),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.15),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.cyanAccent.withOpacity(0.15),
+                        blurRadius: 30,
+                        spreadRadius: 5,
+                      ),
+                    ],
+                  ),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      const Icon(
+                        Icons.cloud,
+                        size: 70,
+                        color: Colors.cyanAccent,
+                      ),
+                      Positioned(
+                        right: 17,
+                        top: 20,
+                        child: Icon(
+                          Icons.wb_sunny,
+                          size: 32,
+                          color: Colors.amber.shade400,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 28),
+
+                // 🌦️ App Name
+                const Text(
+                  "Weatherly",
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1,
+                    color: Colors.white,
+                  ),
+                ),
+
+                const SizedBox(height: 8),
+
+                // Tagline
+                const Text(
+                  "More Than Weather",
+                  style: TextStyle(
+                    fontSize: 15,
+                    letterSpacing: 1.2,
+                    color: Colors.white70,
+                  ),
+                ),
+
+                const SizedBox(height: 35),
+
+                // Loading
+                SizedBox(
+                  width: 28,
+                  height: 28,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2.5,
+                    valueColor: const AlwaysStoppedAnimation<Color>(
+                      Colors.cyanAccent,
+                    ),
+                  ),
+                ),
               ],
             ),
-            SizedBox(height: 20),
-
-            //App-name
-            Text(
-              "Weatherly",
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 8),
-
-            //Tagline
-            Text(
-              "More Than Weather",
-              style: TextStyle(fontSize: 16, color: Colors.white70),
-            ),
-
-            SizedBox(height: 40,),
-            CircularProgressIndicator(
-              color: Colors.white,
-              backgroundColor: Colors.cyan,
-            )
-          ],
+          ),
         ),
       ),
     );

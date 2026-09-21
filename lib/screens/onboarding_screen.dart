@@ -8,58 +8,129 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF061B33),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            children: [
-              const SizedBox(height: 70),
-
-              // Weather Icons
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.cloud, size: 90, color: Colors.cyanAccent),
-                  const Icon(Icons.wb_sunny, size: 45, color: Colors.amber),
-                ],
-              ),
-
-              const SizedBox(height: 150),
-
-              // Heading
-              const Text(
-                "Welcome to",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  height: 1.2, //Space b/w heading Gaps
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFF061B33),
+              Color(0xFF0D4773),
+              Color(0xFF123E63),
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              children: [
+                const SizedBox(height: 55),
+                Container(
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.10),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.15),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.cyanAccent.withOpacity(0.12),
+                        blurRadius: 35,
+                        spreadRadius: 5,
+                      ),
+                    ],
+                  ),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      const Icon(
+                        Icons.cloud,
+                        size: 90,
+                        color: Colors.cyanAccent,
+                      ),
+                      Positioned(
+                        right: 22,
+                        top: 22,
+                        child: Icon(
+                          Icons.wb_sunny,
+                          size: 42,
+                          color: Colors.amber,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-
-              const SizedBox(height: 15),
-
-              // Description
-              const Text(
-                "Get real-time weather information\n"
-                "for every place you care about.",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white70,
-                  height: 1.5,
+                const SizedBox(height: 55),
+                const Text(
+                  "Welcome to",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 42,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    height: 1.2,
+                    letterSpacing: 0.5,
+                  ),
                 ),
-              ),
-
-              const Spacer(),
-
-              // Get Started Button
-              SizedBox(
-                width: double.infinity,
-                height: 54,
-                child: ElevatedButton(
+                const SizedBox(height: 8),
+                const Text(
+                  "Weatherly",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.cyanAccent,
+                    letterSpacing: 1,
+                  ),
+                ),
+                const SizedBox(height: 18),
+                const Text(
+                  "Get real-time weather information\n"
+                  "for every place you care about.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white70,
+                    height: 1.5,
+                  ),
+                ),
+                const Spacer(),
+                SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const HomeScreen(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      elevation: 8,
+                      backgroundColor: const Color.fromARGB(255, 37, 250, 250),
+                      foregroundColor: const Color(0xFF061B33),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                    ),
+                    child: const Text(
+                      "Get Started  →",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton(
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,
@@ -68,39 +139,17 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    elevation: 10,
-                    backgroundColor: Colors.cyanAccent,
-                    foregroundColor: const Color(0xFF061B33),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+                  child: const Text(
+                    "Skip",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white70,
                     ),
                   ),
-                  child: const Text(
-                    "Get Started →",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
                 ),
-              ),
-
-              const SizedBox(height: 12),
-
-              // Skip Button
-              TextButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    CupertinoPageRoute(builder: (context) => const HomeScreen()),
-                  );
-                },
-                child: const Text(
-                  "Skip",
-                  style: TextStyle(fontSize: 15, color: Colors.white70),
-                ),
-              ),
-
-              const SizedBox(height: 20),
-            ],
+                const SizedBox(height: 18),
+              ],
+            ),
           ),
         ),
       ),
