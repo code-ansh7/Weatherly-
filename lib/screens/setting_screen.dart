@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  final VoidCallback onBack;
+  const SettingsScreen({
+    super.key,
+    required this.onBack
+    });
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -41,7 +45,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         color: Colors.white.withOpacity(0.12),
                       ),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: widget.onBack,
                         icon: Icon(Icons.arrow_back, color: Colors.white),
                       ),
                     ),

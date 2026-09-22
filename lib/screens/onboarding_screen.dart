@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:weatherly/screens/home_screen.dart';
+import 'package:weatherly/navigation/main_navigation.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -108,7 +108,7 @@ class OnboardingScreen extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         CupertinoPageRoute(
-                          builder: (context) => const HomeScreen(),
+                          builder: (context) => const MainNavigation(),
                         ),
                       );
                     },
@@ -135,7 +135,7 @@ class OnboardingScreen extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        builder: (context) => const MainNavigation(),
                       ),
                     );
                   },

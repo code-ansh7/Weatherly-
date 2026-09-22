@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+  final VoidCallback onBack;
+
+  const SearchScreen({
+    super.key,
+    required this.onBack,
+    });
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -23,110 +28,113 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
 
       child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header
-              Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.12),
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.arrow_back, color: Colors.white),
-                    ),
-                  ),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header
+                Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.12),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
 
-                  const SizedBox(width: 15),
-
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Search City",
-                        style: TextStyle(
-                          fontSize: 27,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                      child: IconButton(
+                        onPressed: widget.onBack,
+                        icon: const Icon(Icons.arrow_back, color: Colors.white),
+                      ),
+                    ),
+          
+                    const SizedBox(width: 15),
+          
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Search City",
+                          style: TextStyle(
+                            fontSize: 27,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Find weather for any city",
-                        style: TextStyle(fontSize: 13, color: Colors.white70),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 28),
-
-              // Search Box
-              TextField(
-                decoration: InputDecoration(
-                  hintText: "Search city (e.g. Tilhar)",
-                  hintStyle: const TextStyle(color: Colors.white60),
-
-                  prefixIcon: const Icon(
-                    Icons.search,
-                    color: Colors.cyanAccent,
-                  ),
-
-                  filled: true,
-                  fillColor: Colors.white.withOpacity(0.12),
-
-                  contentPadding: const EdgeInsets.symmetric(vertical: 17),
-
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: BorderSide.none,
-                  ),
-
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: BorderSide(
-                      color: Colors.white.withOpacity(0.15),
+                        Text(
+                          "Find weather for any city",
+                          style: TextStyle(fontSize: 13, color: Colors.white70),
+                        ),
+                      ],
                     ),
-                  ),
-
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: const BorderSide(
+                  ],
+                ),
+          
+                const SizedBox(height: 28),
+          
+                // Search Box
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: "Search city (e.g. Tilhar)",
+                    hintStyle: const TextStyle(color: Colors.white60),
+          
+                    prefixIcon: const Icon(
+                      Icons.search,
                       color: Colors.cyanAccent,
-                      width: 1.5,
+                    ),
+          
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.12),
+          
+                    contentPadding: const EdgeInsets.symmetric(vertical: 17),
+          
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide: BorderSide.none,
+                    ),
+          
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide: BorderSide(
+                        color: Colors.white.withOpacity(0.15),
+                      ),
+                    ),
+          
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide: const BorderSide(
+                        color: Colors.cyanAccent,
+                        width: 1.5,
+                      ),
                     ),
                   ),
                 ),
-              ),
-
-              const SizedBox(height: 30),
-
-              // Location Heading
-              const Text(
-                "Popular Cities",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 19,
-                  fontWeight: FontWeight.bold,
+          
+                const SizedBox(height: 30),
+          
+                // Location Heading
+                const Text(
+                  "Popular Cities",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-
-              const SizedBox(height: 15),
-
-              // City Cards
-              cityCard("Tilhar", "Shahjahanpur, Uttar Pradesh"),
-
-              cityCard("Bareilly", "Uttar Pradesh, India"),
-
-              cityCard("New Delhi", "Delhi, India"),
-
-              cityCard("Mumbai", "Maharashtra, India"),
-            ],
+          
+                const SizedBox(height: 15),
+          
+                // City Cards
+                cityCard("Tilhar", "Shahjahanpur, Uttar Pradesh"),
+          
+                cityCard("Bareilly", "Uttar Pradesh, India"),
+          
+                cityCard("New Delhi", "Delhi, India"),
+          
+                cityCard("Mumbai", "Maharashtra, India"),
+              ],
+            ),
           ),
         ),
       ),

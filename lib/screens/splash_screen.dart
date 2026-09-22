@@ -120,8 +120,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
                 // Loading
                 SizedBox(
-                  width: 28,
-                  height: 28,
+                  width: 40,
+                  height: 40,
                   child: CircularProgressIndicator(
                     strokeWidth: 2.5,
                     valueColor: const AlwaysStoppedAnimation<Color>(

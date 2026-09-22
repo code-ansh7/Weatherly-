@@ -19,6 +19,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [Color(0xFF061B33), Color(0xFF0D4773), Color(0xFF123E63)],
+            // colors: [Color(0xFF548BC3), Color(0xFF163A5F)],
           ),
         ),
         child: SafeArea(
@@ -37,7 +38,9 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                           color: Colors.white.withOpacity(0.12),
                         ),
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           icon: Icon(Icons.arrow_back, color: Colors.white),
                         ),
                       ),
@@ -73,7 +76,15 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      color: Colors.white.withOpacity(0.10),
+
+                      // color: Colors.white.withOpacity(0.10),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+
+                        colors: [Color(0xFF548BC3), Color(0xFF163A5F)],
+                      ),
+
                       border: Border.all(color: Colors.white.withOpacity(0.15)),
                       boxShadow: [
                         BoxShadow(
@@ -89,7 +100,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                         children: [
                           Icon(
                             Icons.cloud,
-                            color: const Color(0xFF8CF0F0),
+                            color: const Color.fromARGB(255, 167, 232, 232),
                             size: 100,
                           ),
                           Text(
@@ -171,7 +182,15 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        color: Colors.white.withOpacity(0.10),
+
+        // color: Colors.white.withOpacity(0.10),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+
+          colors: [Color(0xFF548BC3), Color(0xFF163A5F)],
+        ),
+
         border: Border.all(color: Colors.white.withOpacity(0.15)),
         boxShadow: [
           BoxShadow(
@@ -187,13 +206,10 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(icon, color: Colors.cyanAccent, size: 40),
-          SizedBox(height: 10,),
+          SizedBox(height: 10),
           Text(
             description,
-            style: TextStyle(
-              color: Colors.white70, 
-              fontSize: 18
-            ),
+            style: TextStyle(color: Colors.white70, fontSize: 18),
           ),
 
           Text(
