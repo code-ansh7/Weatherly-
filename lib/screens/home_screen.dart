@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weatherly/screens/search_screen.dart';
 import 'package:weatherly/screens/setting_screen.dart';
+import 'package:weatherly/screens/weather_details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -195,192 +197,204 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 const SizedBox(height: 22),
 
-                Container(
-                  width: double.infinity,
-                  height: 240,
-
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-
-                      colors: [Color(0xFF548BC3), Color(0xFF163A5F)],
-                    ),
-
-                    borderRadius: BorderRadius.circular(24),
-
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.25),
-                        blurRadius: 20,
-                        offset: const Offset(0, 10),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const WeatherDetailsScreen(),
                       ),
-                    ],
-                  ),
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 300,
 
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
 
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        colors: [Color(0xFF548BC3), Color(0xFF163A5F)],
+                      ),
 
-                      children: [
-                        Row(
-                          children: [
-                            const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                      borderRadius: BorderRadius.circular(24),
 
-                              children: [
-                                Text(
-                                  "New Delhi",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-
-                                SizedBox(height: 4),
-
-                                Text(
-                                  "Sun, 20 Sep",
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.white70,
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            const Spacer(),
-
-                            IconButton(
-                              onPressed: () {},
-
-                              icon: const Icon(
-                                Icons.more_horiz_rounded,
-                                color: Colors.white70,
-                                size: 24,
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-
-                          children: [
-                            const Icon(
-                              Icons.wb_sunny,
-                              size: 65,
-                              color: Color(0xFFFFC107),
-                            ),
-
-                            const SizedBox(width: 20),
-
-                            const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-
-                              children: [
-                                Text(
-                                  "32°C",
-                                  style: TextStyle(
-                                    fontSize: 52,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-
-                                Text(
-                                  "Sunny",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white70,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                          children: [
-                            // HUMIDITY
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.water_drop,
-                                  size: 22,
-                                  color: Color(0xFF29B6F6),
-                                ),
-
-                                const SizedBox(width: 8),
-
-                                const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-
-                                  children: [
-                                    Text(
-                                      "Humidity",
-                                      style: TextStyle(
-                                        fontSize: 11,
-                                        color: Colors.white70,
-                                      ),
-                                    ),
-
-                                    Text(
-                                      "45%",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-
-                            // WIND
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.air,
-                                  size: 22,
-                                  color: Color(0xFF00E5FF),
-                                ),
-
-                                const SizedBox(width: 8),
-
-                                const Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-
-                                  children: [
-                                    Text(
-                                      "Wind",
-                                      style: TextStyle(
-                                        fontSize: 11,
-                                        color: Colors.white70,
-                                      ),
-                                    ),
-
-                                    Text(
-                                      "12 km/h",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.25),
+                          blurRadius: 20,
+                          offset: const Offset(0, 10),
                         ),
                       ],
+                    ),
+
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                        children: [
+                          Row(
+                            children: [
+                              const Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+
+                                children: [
+                                  Text(
+                                    "Tilhar",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+
+                                  SizedBox(height: 4),
+
+                                  Text(
+                                    "Sun, 20 Sep",
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.white70,
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              const Spacer(),
+
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                      builder: (context) =>
+                                          WeatherDetailsScreen(),
+                                    ),
+                                  );
+                                },
+
+                                icon: const Icon(
+                                  Icons.more_horiz_rounded,
+                                  color: Colors.white70,
+                                  size: 24,
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+
+                            children: [
+                              const Icon(
+                                Icons.wb_sunny,
+                                size: 65,
+                                color: Color(0xFFFFC107),
+                              ),
+
+                              const SizedBox(width: 20),
+
+                              Text(
+                                "32°C",
+                                style: TextStyle(
+                                  fontSize: 52,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          Text(
+                            "Sunny",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(fontSize: 25, color: Colors.white),
+                          ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
+                            children: [
+                              // HUMIDITY
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.water_drop,
+                                    size: 22,
+                                    color: Color(0xFF29B6F6),
+                                  ),
+
+                                  const SizedBox(width: 8),
+
+                                  const Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+
+                                    children: [
+                                      Text(
+                                        "Humidity",
+                                        style: TextStyle(
+                                          fontSize: 11,
+                                          color: Colors.white70,
+                                        ),
+                                      ),
+
+                                      Text(
+                                        "45%",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+
+                              // WIND
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.air,
+                                    size: 22,
+                                    color: Color(0xFF00E5FF),
+                                  ),
+
+                                  const SizedBox(width: 8),
+
+                                  const Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+
+                                    children: [
+                                      Text(
+                                        "Wind",
+                                        style: TextStyle(
+                                          fontSize: 11,
+                                          color: Colors.white70,
+                                        ),
+                                      ),
+
+                                      Text(
+                                        "12 km/h",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -11,11 +11,8 @@ lib/
 │   └── settings_screen.dart
 │
 ├── widgets/
-│   ├── weather_card.dart
-│   └── search_bar.dart
-│
+│   
 ├── models/
-│   └── weather_model.dart
 │
 ├── services/
 │   └── weather_service.dart
