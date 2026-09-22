@@ -238,6 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Row(
                             children: [
+                              
                               const Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
 
