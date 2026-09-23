@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:weatherly/widgets/weather_info_card.dart';
 
 class WeatherDetailsScreen extends StatefulWidget {
-  const new({super.key});
+  const WeatherDetailsScreen({super.key});
 
   @override
   State<WeatherDetailsScreen> createState() => _WeatherDetailsScreenState();
@@ -99,12 +100,12 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(
-                            Icons.cloud,
-                            color: const Color.fromARGB(255, 167, 232, 232),
+                            Icons.sunny,
+                            color: const Color(0xFFFFC107),
                             size: 100,
                           ),
                           Text(
-                            "28°C",
+                            "32°C",
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 52,
@@ -112,7 +113,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                             ),
                           ),
                           Text(
-                            "Light Rain",
+                            "Sunny",
                             style: const TextStyle(
                               color: Colors.white70,
                               fontSize: 17,
@@ -129,39 +130,42 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                       Row(
                         children: [
                           Expanded(
-                            child: infoContainer(
-                              Icons.water_drop,
-                              "Humidity",
-                              "45%",
+                            child: WeatherInfoCard(
+                              icon: Icons.water_drop,
+                              title: 'Humidity',
+                              value: '45%',
                             ),
                           ),
+
                           SizedBox(width: 20),
+
                           Expanded(
-                            child: infoContainer(
-                              Icons.air,
-                              "Wind Speed",
-                              "12 Km/h",
+                            child: WeatherInfoCard(
+                              icon: Icons.air,
+                              title: 'Wind Speed',
+                              value: '12 Km/h',
                             ),
                           ),
                         ],
                       ),
+
                       SizedBox(height: 20),
 
                       Row(
                         children: [
                           Expanded(
-                            child: infoContainer(
-                              Icons.thermostat,
-                              "Pressure",
-                              "1012 hPa",
+                            child: WeatherInfoCard(
+                              icon: Icons.speed,
+                              title: "Pressure",
+                              value: "1012 hPa",
                             ),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 10),
                           Expanded(
-                            child: infoContainer(
-                              Icons.visibility,
-                              "Visibility",
-                              "10 Km",
+                            child: WeatherInfoCard(
+                              icon: Icons.visibility,
+                              title: "Visibility",
+                              value: "10 km",
                             ),
                           ),
                         ],
@@ -173,54 +177,6 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget infoContainer(IconData icon, String description, String value) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-
-        // color: Colors.white.withOpacity(0.10),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-
-          colors: [Color(0xFF548BC3), Color(0xFF163A5F)],
-        ),
-
-        border: Border.all(color: Colors.white.withOpacity(0.15)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.cyanAccent.withOpacity(0.15),
-            blurRadius: 30,
-            spreadRadius: 5,
-          ),
-        ],
-      ),
-
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(icon, color: Colors.cyanAccent, size: 40),
-          SizedBox(height: 10),
-          Text(
-            description,
-            style: TextStyle(color: Colors.white70, fontSize: 18),
-          ),
-
-          Text(
-            value,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
       ),
     );
   }

@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weatherly/screens/search_screen.dart';
-import 'package:weatherly/screens/setting_screen.dart';
 import 'package:weatherly/screens/splash_screen.dart';
-import 'package:weatherly/screens/weather_details_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,11 +13,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
-      // home: OnboardingScreen(),
-      // home: HomeScreen(),
-      // home: SettingsScreen(),
-      // home: WeatherDetailsScreen(),
     );
   }
 }
-

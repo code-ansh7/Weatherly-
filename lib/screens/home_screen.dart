@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weatherly/screens/weather_details_screen.dart';
+import 'package:weatherly/widgets/weather_stat.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,11 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: const Color(0xFF2B4868),
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(
-            Icons.menu,
-            color: Colors.white,
-            size: 24,
-          ),
+          icon: const Icon(Icons.menu, color: Colors.white, size: 24),
         ),
         actions: [
           Padding(
@@ -31,10 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: CircleAvatar(
               radius: 20,
               backgroundColor: const Color(0xFF163A5F),
-              child: const Icon(
-                Icons.person,
-                color: Colors.white,
-              ),
+              child: const Icon(Icons.person, color: Colors.white),
             ),
           ),
         ],
@@ -51,11 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Color(0xFF061B33),
-            Color(0xFF0D4773),
-            Color(0xFF123E63),
-          ],
+          colors: [Color(0xFF061B33), Color(0xFF0D4773), Color(0xFF123E63)],
         ),
       ),
       child: SafeArea(
@@ -80,10 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(height: 4),
                     Text(
                       "Check the weather around you...",
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white70,
-                      ),
+                      style: TextStyle(fontSize: 14, color: Colors.white70),
                     ),
                   ],
                 ),
@@ -93,18 +80,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 TextField(
                   decoration: InputDecoration(
                     hintText: "Search city (e.g. Tilhar)",
-                    hintStyle: const TextStyle(
-                      color: Colors.white60,
-                    ),
+                    hintStyle: const TextStyle(color: Colors.white60),
                     prefixIcon: const Icon(
                       Icons.search,
                       color: Colors.cyanAccent,
                     ),
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.12),
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 17,
-                    ),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 17),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(18),
                       borderSide: BorderSide.none,
@@ -132,8 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            const WeatherDetailsScreen(),
+                        builder: (context) => const WeatherDetailsScreen(),
                       ),
                     );
                   },
@@ -144,10 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       gradient: const LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
-                        colors: [
-                          Color(0xFF548BC3),
-                          Color(0xFF163A5F),
-                        ],
+                        colors: [Color(0xFF548BC3), Color(0xFF163A5F)],
                       ),
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
@@ -161,14 +140,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(20),
                       child: Column(
-                        mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
                             children: [
                               const Column(
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     "Tilhar",
@@ -213,8 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Column(
                             children: [
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const Icon(
                                     Icons.wb_sunny,
@@ -246,75 +222,24 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(height: 10),
 
                           Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.water_drop,
-                                    size: 40,
-                                    color: Color(0xFF29B6F6),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  const Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Humidity",
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white70,
-                                        ),
-                                      ),
-                                      Text(
-                                        "45%",
-                                        style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight:
-                                              FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                              WeatherStat(
+                                icon: Icons.water_drop,
+                                title: "Humidity",
+                                value: "45%",
+                                iconColor: const Color(0xFF29B6F6),
                               ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.air,
-                                    size: 40,
-                                    color: Color(0xFF00E5FF),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  const Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Wind",
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white70,
-                                        ),
-                                      ),
-                                      Text(
-                                        "12 km/h",
-                                        style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight:
-                                              FontWeight.bold,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+
+                              WeatherStat(
+                                icon: Icons.air,
+                                title: "Wind",
+                                value: "12 km/h",
+                                iconColor: const Color(0xFF00E5FF),
                               ),
                             ],
                           ),
+                          
                         ],
                       ),
                     ),
