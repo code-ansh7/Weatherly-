@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weatherly/screens/onboarding_screen.dart';
+import 'package:weatherly/utils/constants.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -95,12 +96,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
                 // 🌦️ App Name
                 const Text(
-                  "Weatherly",
+                  AppConstants.appName,
                   style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1,
-                    color: Colors.white,
+                    color: Colors.white, 
                   ),
                 ),
 
@@ -108,7 +109,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
                 // Tagline
                 const Text(
-                  "More Than Weather",
+                  AppConstants.tagline,
                   style: TextStyle(
                     fontSize: 15,
                     letterSpacing: 1.2,

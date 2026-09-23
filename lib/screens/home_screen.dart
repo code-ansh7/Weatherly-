@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weatherly/screens/weather_details_screen.dart';
+import 'package:weatherly/theme/app_colors.dart';
+import 'package:weatherly/utils/constants.dart';
 import 'package:weatherly/widgets/weather_stat.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,21 +16,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF061B33),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: const Color(0xFF2B4868),
+        backgroundColor: AppColors.appBar,
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.menu, color: Colors.white, size: 24),
+          icon: const Icon(Icons.menu, color: AppColors.iconColor, size: 24),
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: CircleAvatar(
               radius: 20,
-              backgroundColor: const Color(0xFF163A5F),
-              child: const Icon(Icons.person, color: Colors.white),
+              backgroundColor: AppColors.circleAvatar,
+              child: const Icon(Icons.person, color: AppColors.iconColor),
             ),
           ),
         ],
@@ -45,7 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF061B33), Color(0xFF0D4773), Color(0xFF123E63)],
+          colors: [
+            AppColors.background,
+            AppColors.gradientBlue,
+            AppColors.gradientDarkBlue,
+          ],
         ),
       ),
       child: SafeArea(
@@ -81,10 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: InputDecoration(
                     hintText: "Search city (e.g. Tilhar)",
                     hintStyle: const TextStyle(color: Colors.white60),
-                    prefixIcon: const Icon(
-                      Icons.search,
-                      color: Colors.cyanAccent,
-                    ),
+                    prefixIcon: const Icon(Icons.search, color: AppColors.cyan),
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.12),
                     contentPadding: const EdgeInsets.symmetric(vertical: 17),
@@ -101,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(18),
                       borderSide: const BorderSide(
-                        color: Colors.cyanAccent,
+                        color: AppColors.cyan,
                         width: 1.5,
                       ),
                     ),
@@ -126,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       gradient: const LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
-                        colors: [Color(0xFF548BC3), Color(0xFF163A5F)],
+                        colors: [AppColors.cardBlue, AppColors.cardDarkBlue],
                       ),
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
@@ -148,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Tilhar",
+                                    AppConstants.defaultCity,
                                     style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
@@ -195,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   const Icon(
                                     Icons.wb_sunny,
                                     size: 65,
-                                    color: Color(0xFFFFC107),
+                                    color: AppColors.sunny,
                                   ),
                                   const SizedBox(width: 20),
                                   const Text(
@@ -209,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                               const Text(
-                                "Sunny",
+                                "Sunny", 
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                   fontSize: 25,
@@ -228,7 +231,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: Icons.water_drop,
                                 title: "Humidity",
                                 value: "45%",
-                                iconColor: const Color(0xFF29B6F6),
+                                iconColor: AppColors.cardBlue,
                               ),
 
                               WeatherStat(
@@ -239,7 +242,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           ),
-                          
                         ],
                       ),
                     ),

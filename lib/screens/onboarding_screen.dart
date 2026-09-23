@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weatherly/navigation/main_navigation.dart';
+import 'package:weatherly/utils/constants.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -45,7 +46,7 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Stack(
+                  child: Stack( 
                     alignment: Alignment.center,
                     children: [
                       const Icon(
@@ -77,9 +78,11 @@ class OnboardingScreen extends StatelessWidget {
                     letterSpacing: 0.5,
                   ),
                 ),
+
                 const SizedBox(height: 8),
+
                 const Text(
-                  "Weatherly",
+                  AppConstants.appName,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
@@ -88,7 +91,9 @@ class OnboardingScreen extends StatelessWidget {
                     letterSpacing: 1,
                   ),
                 ),
+
                 const SizedBox(height: 18),
+
                 const Text(
                   "Get real-time weather information\n"
                   "for every place you care about.",

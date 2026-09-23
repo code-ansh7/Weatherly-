@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:weatherly/theme/app_colors.dart';
 
 class SettingsScreen extends StatefulWidget {
   final VoidCallback onBack;
-  const SettingsScreen({
-    super.key,
-    required this.onBack
-    });
+  const SettingsScreen({super.key, required this.onBack});
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -19,13 +17,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: double.infinity,
+      height: double.infinity, 
 
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF061B33), Color(0xFF0D4773), Color(0xFF123E63)],
+          colors: [
+            AppColors.background,
+            AppColors.gradientBlue,
+            AppColors.gradientDarkBlue,
+          ],
         ),
       ),
 
@@ -46,7 +48,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       child: IconButton(
                         onPressed: widget.onBack,
-                        icon: Icon(Icons.arrow_back, color: Colors.white),
+                        icon: Icon(Icons.arrow_back, color: AppColors.iconColor),
                       ),
                     ),
                     SizedBox(width: 15),
@@ -78,7 +80,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: [
                     Icon(
                       Icons.thermostat_outlined,
-                      color: Colors.cyanAccent,
+                      color: AppColors.cyan,
                       size: 21,
                     ),
 
@@ -118,7 +120,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             padding: EdgeInsets.symmetric(vertical: 13),
                             decoration: BoxDecoration(
                               color: isCelsius
-                                  ? Colors.cyanAccent
+                                  ? AppColors.cyan
                                   : Colors.white.withOpacity(0.12),
 
                               borderRadius: BorderRadius.circular(13),
@@ -129,7 +131,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 "°C",
                                 style: TextStyle(
                                   color: isCelsius
-                                      ? Color(0xFF061B33)
+                                      ? AppColors.background
                                       : Colors.white70,
                                 ),
                               ),

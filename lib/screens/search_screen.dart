@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:weatherly/theme/app_colors.dart';
 
 class SearchScreen extends StatefulWidget {
   final VoidCallback onBack;
 
-  const SearchScreen({
-    super.key,
-    required this.onBack,
-    });
+  const SearchScreen({super.key, required this.onBack});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -23,7 +21,11 @@ class _SearchScreenState extends State<SearchScreen> {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF061B33), Color(0xFF0D4773), Color(0xFF123E63)],
+          colors: [
+            AppColors.background,
+            AppColors.gradientBlue,
+            AppColors.gradientDarkBlue,
+          ],
         ),
       ),
 
@@ -45,12 +47,12 @@ class _SearchScreenState extends State<SearchScreen> {
 
                       child: IconButton(
                         onPressed: widget.onBack,
-                        icon: const Icon(Icons.arrow_back, color: Colors.white),
+                        icon: const Icon(Icons.arrow_back, color: AppColors.iconColor),
                       ),
                     ),
-          
+
                     const SizedBox(width: 15),
-          
+
                     const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -70,49 +72,49 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   ],
                 ),
-          
+
                 const SizedBox(height: 28),
-          
+
                 // Search Box
                 TextField(
                   decoration: InputDecoration(
                     hintText: "Search city (e.g. Tilhar)",
                     hintStyle: const TextStyle(color: Colors.white60),
-          
+
                     prefixIcon: const Icon(
                       Icons.search,
-                      color: Colors.cyanAccent,
+                      color: AppColors.cyan,
                     ),
-          
+
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.12),
-          
+
                     contentPadding: const EdgeInsets.symmetric(vertical: 17),
-          
+
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(18),
                       borderSide: BorderSide.none,
                     ),
-          
+
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(18),
                       borderSide: BorderSide(
                         color: Colors.white.withOpacity(0.15),
                       ),
                     ),
-          
+
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(18),
                       borderSide: const BorderSide(
-                        color: Colors.cyanAccent,
+                        color: AppColors.cyan,
                         width: 1.5,
                       ),
                     ),
                   ),
                 ),
-          
+
                 const SizedBox(height: 30),
-          
+
                 // Location Heading
                 const Text(
                   "Popular Cities",
@@ -122,16 +124,16 @@ class _SearchScreenState extends State<SearchScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-          
+
                 const SizedBox(height: 15),
-          
+
                 // City Cards
                 cityCard("Tilhar", "Shahjahanpur, Uttar Pradesh"),
-          
+
                 cityCard("Bareilly", "Uttar Pradesh, India"),
-          
+
                 cityCard("New Delhi", "Delhi, India"),
-          
+
                 cityCard("Mumbai", "Maharashtra, India"),
               ],
             ),
@@ -167,14 +169,14 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               child: const Icon(
                 Icons.location_on_outlined,
-                color: Colors.cyanAccent,
+                color: AppColors.cyan,
                 size: 24,
               ),
             ),
 
             const SizedBox(width: 15),
 
-            // City Information
+            // City Information 
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

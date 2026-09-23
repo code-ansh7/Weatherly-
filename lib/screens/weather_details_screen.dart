@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weatherly/widgets/weather_info_card.dart';
+import 'package:weatherly/theme/app_colors.dart';
 
 class WeatherDetailsScreen extends StatefulWidget {
   const WeatherDetailsScreen({super.key});
@@ -19,8 +20,11 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF061B33), Color(0xFF0D4773), Color(0xFF123E63)],
-            // colors: [Color(0xFF548BC3), Color(0xFF163A5F)],
+            colors: [
+              AppColors.background,
+              AppColors.gradientBlue,
+              AppColors.gradientDarkBlue,
+            ], // colors: [Color(0xFF548BC3), Color(0xFF163A5F)],
           ),
         ),
         child: SafeArea(
@@ -33,7 +37,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                   //Header
                   Row(
                     children: [
-                      Container(
+                      Container( 
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
                           color: Colors.white.withOpacity(0.12),
@@ -42,7 +46,10 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          icon: Icon(Icons.arrow_back, color: Colors.white),
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: AppColors.iconColor,
+                          ),
                         ),
                       ),
 
@@ -83,7 +90,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
 
-                        colors: [Color(0xFF548BC3), Color(0xFF163A5F)],
+                        colors: [AppColors.cardBlue, AppColors.cardDarkBlue],
                       ),
 
                       border: Border.all(color: Colors.white.withOpacity(0.15)),
