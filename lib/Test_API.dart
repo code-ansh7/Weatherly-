@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-final API = "e34a5eb0b4c5ff748fdf9219a63d224e";
+final API = "";
 // 1. DATA MODEL
 class Weather {
   final String cityName;
