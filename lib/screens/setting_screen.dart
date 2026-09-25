@@ -17,7 +17,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: double.infinity, 
+      height: double.infinity,
 
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -48,7 +48,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       child: IconButton(
                         onPressed: widget.onBack,
-                        icon: Icon(Icons.arrow_back, color: AppColors.iconColor),
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: AppColors.iconColor,
+                        ),
                       ),
                     ),
                     SizedBox(width: 15),
@@ -61,13 +64,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           style: TextStyle(
                             fontSize: 27,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: AppColors.primaryText,
                           ),
                         ),
 
                         Text(
                           "Customize your Weatherly Experience !",
-                          style: TextStyle(fontSize: 13, color: Colors.white70),
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: AppColors.secondaryText,
+                          ),
                         ),
                       ],
                     ),
@@ -90,7 +96,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: AppColors.primaryText,
                       ),
                     ),
                   ],
@@ -132,7 +138,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 style: TextStyle(
                                   color: isCelsius
                                       ? AppColors.background
-                                      : Colors.white70,
+                                      : AppColors.primaryText,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
@@ -153,7 +160,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             padding: EdgeInsets.symmetric(vertical: 13),
                             decoration: BoxDecoration(
                               color: !isCelsius
-                                  ? Colors.cyanAccent
+                                  ? AppColors.cyan
                                   : Colors.white.withOpacity(0.12),
 
                               borderRadius: BorderRadius.circular(13),
@@ -164,8 +171,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 "°F",
                                 style: TextStyle(
                                   color: !isCelsius
-                                      ? Color(0xFF061B33)
-                                      : Colors.white70,
+                                      ? AppColors.background
+                                      : AppColors.primaryText,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
@@ -174,157 +182,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ],
                   ),
-                ),
-
-                const SizedBox(height: 30),
-
-                //Theme Heading
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.palette_outlined,
-                      color: Colors.cyanAccent,
-                      size: 21,
-                    ),
-
-                    const SizedBox(width: 8),
-
-                    const Text(
-                      "Theme",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
                 ),
 
                 const SizedBox(height: 12),
-
-                // Theme Container
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(7),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.10),
-                    borderRadius: BorderRadius.circular(18),
-                    border: Border.all(color: Colors.white.withOpacity(0.12)),
-                  ),
-
-                  child: Row(
-                    children: [
-                      // Light
-                      Expanded(
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(13),
-                          onTap: () {
-                            setState(() {
-                              selectedTheme = "Light";
-                            });
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 13),
-                            decoration: BoxDecoration(
-                              color: selectedTheme == "Light"
-                                  ? Colors.cyanAccent
-                                  : Colors.white.withOpacity(0.12),
-                              borderRadius: BorderRadius.circular(13),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Light",
-                                style: TextStyle(
-                                  color: selectedTheme == "Light"
-                                      ? const Color(0xFF061B33)
-                                      : Colors.white70,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(width: 7),
-
-                      // Dark
-                      Expanded(
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(13),
-                          onTap: () {
-                            setState(() {
-                              selectedTheme = "Dark";
-                            });
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 13),
-                            decoration: BoxDecoration(
-                              color: selectedTheme == "Dark"
-                                  ? Colors.cyanAccent
-                                  : Colors.white.withOpacity(0.12),
-                              borderRadius: BorderRadius.circular(13),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Dark",
-                                style: TextStyle(
-                                  color: selectedTheme == "Dark"
-                                      ? const Color(0xFF061B33)
-                                      : Colors.white70,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(width: 7),
-
-                      // 📱 System
-                      Expanded(
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(13),
-                          onTap: () {
-                            setState(() {
-                              selectedTheme = "System";
-                            });
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 13),
-                            decoration: BoxDecoration(
-                              color: selectedTheme == "System"
-                                  ? Colors.cyanAccent
-                                  : Colors.white.withOpacity(0.12),
-                              borderRadius: BorderRadius.circular(13),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "System",
-                                style: TextStyle(
-                                  color: selectedTheme == "System"
-                                      ? const Color(0xFF061B33)
-                                      : Colors.white70,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 30),
 
                 // About App Heading
                 Row(
                   children: [
                     const Icon(
                       Icons.info_outline,
-                      color: Colors.cyanAccent,
+                      color: AppColors.cyan,
                       size: 21,
                     ),
 
@@ -335,7 +202,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: AppColors.secondaryText,
                       ),
                     ),
                   ],
@@ -370,7 +237,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                           child: const Icon(
                             Icons.cloud_outlined,
-                            color: Colors.cyanAccent,
+                            color: AppColors.cyan,
                             size: 24,
                           ),
                         ),
@@ -384,7 +251,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               Text(
                                 "Weatherly",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: AppColors.primaryText,
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -395,7 +262,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               Text(
                                 "More Than Weather",
                                 style: TextStyle(
-                                  color: Colors.white70,
+                                  color: AppColors.secondaryText,
                                   fontSize: 13,
                                 ),
                               ),
@@ -405,7 +272,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
                         const Icon(
                           Icons.arrow_forward_ios,
-                          color: Colors.white38,
+                          color: AppColors.primaryText,
                           size: 16,
                         ),
                       ],

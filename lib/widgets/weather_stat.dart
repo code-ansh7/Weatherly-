@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weatherly/theme/app_colors.dart';
+
 
 class WeatherStat extends StatelessWidget {
   final IconData icon;
@@ -29,7 +31,7 @@ class WeatherStat extends StatelessWidget {
               title,
               style: const TextStyle(
                 fontSize: 18, 
-                color: Colors.white70
+                color: AppColors.secondaryText
               ), 
             ),
             Text(
@@ -37,7 +39,7 @@ class WeatherStat extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: AppColors.primaryText,
               ),
             ),
           ],

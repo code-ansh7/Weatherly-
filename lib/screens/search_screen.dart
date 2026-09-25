@@ -61,12 +61,12 @@ class _SearchScreenState extends State<SearchScreen> {
                           style: TextStyle(
                             fontSize: 27,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: AppColors.primaryText,
                           ),
                         ),
                         Text(
                           "Find weather for any city",
-                          style: TextStyle(fontSize: 13, color: Colors.white70),
+                          style: TextStyle(fontSize: 13, color: AppColors.secondaryText),
                         ),
                       ],
                     ),
@@ -79,11 +79,11 @@ class _SearchScreenState extends State<SearchScreen> {
                 TextField(
                   decoration: InputDecoration(
                     hintText: "Search city (e.g. Tilhar)",
-                    hintStyle: const TextStyle(color: Colors.white60),
+                    hintStyle: const TextStyle(color: AppColors.secondaryText),
 
                     prefixIcon: const Icon(
                       Icons.search,
-                      color: AppColors.cyan,
+                      color: AppColors.primaryText,
                     ),
 
                     filled: true,
@@ -119,7 +119,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 const Text(
                   "Popular Cities",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: AppColors.primaryText,
                     fontSize: 19,
                     fontWeight: FontWeight.bold,
                   ),
@@ -183,7 +183,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 Text(
                   cityName,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: AppColors.primaryText,
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
                   ),
@@ -193,7 +193,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
                 Text(
                   state,
-                  style: const TextStyle(color: Colors.white70, fontSize: 13),
+                  style: const TextStyle(color: AppColors.secondaryText, fontSize: 13),
                 ),
               ],
             ),
@@ -202,7 +202,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
             const Icon(
               Icons.arrow_forward_ios,
-              color: Colors.white38,
+              color: AppColors.primaryText,
               size: 16,
             ),
           ],

@@ -2,9 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weatherly/screens/onboarding_screen.dart';
 import 'package:weatherly/utils/constants.dart';
+import 'package:weatherly/theme/app_colors.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  
+  const SplashScreen({
+    super.key,
+    
+    });
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -15,17 +20,12 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(
-      const Duration(seconds: 3),
-      () {
-        Navigator.pushReplacement(
-          context,
-          CupertinoPageRoute(
-            builder: (context) => const OnboardingScreen(),
-          ),
-        );
-      },
-    );
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        CupertinoPageRoute(builder: (context) => const OnboardingScreen()),
+      );
+    });
   }
 
   @override
@@ -41,9 +41,9 @@ class _SplashScreenState extends State<SplashScreen> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(0xFF061B33),
-              Color(0xFF0D4773),
-              Color(0xFF123E63),
+              AppColors.background,
+              AppColors.gradientBlue,
+              AppColors.gradientDarkBlue,
             ],
           ),
         ),
@@ -60,9 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.10),
                     shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white.withOpacity(0.15),
-                    ),
+                    border: Border.all(color: Colors.white.withOpacity(0.15)),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.cyanAccent.withOpacity(0.15),
@@ -77,7 +75,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       const Icon(
                         Icons.cloud,
                         size: 70,
-                        color: Colors.cyanAccent,
+                        color: AppColors.cyan,
                       ),
                       Positioned(
                         right: 17,
@@ -85,7 +83,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         child: Icon(
                           Icons.wb_sunny,
                           size: 32,
-                          color: Colors.amber.shade400,
+                          color: AppColors.sunny,
                         ),
                       ),
                     ],
@@ -101,7 +99,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     fontSize: 36,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1,
-                    color: Colors.white, 
+                    color: AppColors.primaryText,
                   ),
                 ),
 
@@ -113,7 +111,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   style: TextStyle(
                     fontSize: 15,
                     letterSpacing: 1.2,
-                    color: Colors.white70,
+                    color: AppColors.secondaryText,
                   ),
                 ),
 
@@ -126,7 +124,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: CircularProgressIndicator(
                     strokeWidth: 2.5,
                     valueColor: const AlwaysStoppedAnimation<Color>(
-                      Colors.cyanAccent,
+                      AppColors.cyan,
                     ),
                   ),
                 ),

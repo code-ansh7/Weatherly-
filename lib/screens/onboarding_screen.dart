@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weatherly/navigation/main_navigation.dart';
 import 'package:weatherly/utils/constants.dart';
+import 'package:weatherly/theme/app_colors.dart';
+
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -16,10 +18,10 @@ class OnboardingScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF061B33),
-              Color(0xFF0D4773),
-              Color(0xFF123E63),
+           colors: [
+              AppColors.background,
+              AppColors.gradientBlue,
+              AppColors.gradientDarkBlue,
             ],
           ),
         ),
@@ -52,7 +54,7 @@ class OnboardingScreen extends StatelessWidget {
                       const Icon(
                         Icons.cloud,
                         size: 90,
-                        color: Colors.cyanAccent,
+                        color: AppColors.cyan,
                       ),
                       Positioned(
                         right: 22,
@@ -60,7 +62,7 @@ class OnboardingScreen extends StatelessWidget {
                         child: Icon(
                           Icons.wb_sunny,
                           size: 42,
-                          color: Colors.amber,
+                          color: AppColors.sunny,
                         ),
                       ),
                     ],
@@ -71,9 +73,9 @@ class OnboardingScreen extends StatelessWidget {
                   "Welcome to",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 42,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: AppColors.primaryText,
                     height: 1.2,
                     letterSpacing: 0.5,
                   ),
@@ -85,9 +87,9 @@ class OnboardingScreen extends StatelessWidget {
                   AppConstants.appName,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 42,
                     fontWeight: FontWeight.bold,
-                    color: Colors.cyanAccent,
+                    color: AppColors.cyan,
                     letterSpacing: 1,
                   ),
                 ),
@@ -100,7 +102,7 @@ class OnboardingScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.white70,
+                    color: AppColors.secondaryText,
                     height: 1.5,
                   ),
                 ),
@@ -119,8 +121,8 @@ class OnboardingScreen extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       elevation: 8,
-                      backgroundColor: const Color.fromARGB(255, 46, 249, 249),
-                      foregroundColor: const Color(0xFF061B33),
+                      backgroundColor: AppColors.cyan,
+                      foregroundColor: AppColors.background,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18),
                       ),
@@ -148,7 +150,7 @@ class OnboardingScreen extends StatelessWidget {
                     "Skip",
                     style: TextStyle(
                       fontSize: 15,
-                      color: Colors.white70,
+                      color: AppColors.secondaryText,
                     ),
                   ),
                 ),

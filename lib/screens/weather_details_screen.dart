@@ -61,14 +61,14 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                               style: TextStyle(
                                 fontSize: 27,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: AppColors.primaryText,
                               ),
                             ),
                             Text(
                               "Tue 22 Sep, 4:12 AM",
                               style: TextStyle(
                                 fontSize: 13,
-                                color: Colors.white70,
+                                color: AppColors.secondaryText,
                               ),
                             ),
                           ],
@@ -108,13 +108,13 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                         children: [
                           Icon(
                             Icons.sunny,
-                            color: const Color(0xFFFFC107),
+                            color: AppColors.sunny,
                             size: 100,
                           ),
                           Text(
                             "32°C",
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: AppColors.primaryText,
                               fontSize: 52,
                               fontWeight: FontWeight.bold,
                             ),
@@ -122,7 +122,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                           Text(
                             "Sunny",
                             style: const TextStyle(
-                              color: Colors.white70,
+                              color: AppColors.secondaryText,
                               fontSize: 17,
                             ),
                           ),

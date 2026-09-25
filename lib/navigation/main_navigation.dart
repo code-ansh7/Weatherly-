@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:weatherly/screens/home_screen.dart';
 import 'package:weatherly/screens/search_screen.dart';
 import 'package:weatherly/screens/setting_screen.dart';
+import 'package:weatherly/theme/app_colors.dart';
+
 
 class MainNavigation extends StatefulWidget {
+
+  
   const MainNavigation({super.key});
 
   @override
@@ -63,8 +67,8 @@ class _MainNavigationState extends State<MainNavigation> {
             elevation: 0,
             currentIndex: index,
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: Colors.cyanAccent,
-            unselectedItemColor: Colors.white54,
+            selectedItemColor: AppColors.cyan,
+            unselectedItemColor: AppColors.secondaryText,
             selectedFontSize: 13,
             unselectedFontSize: 11,
             selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),

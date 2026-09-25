@@ -69,14 +69,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(
                         fontSize: 34,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: AppColors.primaryText,
                         height: 1.2,
                       ),
                     ),
                     SizedBox(height: 4),
                     Text(
                       "Check the weather around you...",
-                      style: TextStyle(fontSize: 14, color: Colors.white70),
+                      style: TextStyle(fontSize: 14, color: AppColors.secondaryText),
                     ),
                   ],
                 ),
@@ -86,8 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 TextField(
                   decoration: InputDecoration(
                     hintText: "Search city (e.g. Tilhar)",
-                    hintStyle: const TextStyle(color: Colors.white60),
-                    prefixIcon: const Icon(Icons.search, color: AppColors.cyan),
+                    hintStyle: const TextStyle(color: AppColors.secondaryText),
+                    prefixIcon: const Icon(Icons.search, color: AppColors.primaryText),
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.12),
                     contentPadding: const EdgeInsets.symmetric(vertical: 17),
@@ -155,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                      color: AppColors.primaryText,
                                     ),
                                   ),
                                   SizedBox(height: 4),
@@ -163,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     "Sun, 20 Sep",
                                     style: TextStyle(
                                       fontSize: 18,
-                                      color: Colors.white70,
+                                      color: AppColors.secondaryText,
                                     ),
                                   ),
                                 ],
@@ -181,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                                 icon: const Icon(
                                   Icons.more_horiz_rounded,
-                                  color: Colors.white70,
+                                  color: AppColors.primaryText,
                                   size: 24,
                                 ),
                               ),
@@ -206,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     style: TextStyle(
                                       fontSize: 52,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                      color: AppColors.primaryText,
                                     ),
                                   ),
                                 ],
@@ -216,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                   fontSize: 25,
-                                  color: Colors.white,
+                                  color: AppColors.secondaryText,
                                 ),
                               ),
                             ],
@@ -231,14 +231,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: Icons.water_drop,
                                 title: "Humidity",
                                 value: "45%",
-                                iconColor: AppColors.cardBlue,
+                                iconColor: AppColors.cardDarkBlue,
                               ),
 
                               WeatherStat(
                                 icon: Icons.air,
                                 title: "Wind",
                                 value: "12 km/h",
-                                iconColor: const Color(0xFF00E5FF),
+                                iconColor: AppColors.cyan,
                               ),
                             ],
                           ),

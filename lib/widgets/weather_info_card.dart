@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weatherly/theme/app_colors.dart';
+
 
 class WeatherInfoCard extends StatelessWidget {
   final IconData icon;
@@ -23,7 +25,7 @@ class WeatherInfoCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
 
-          colors: [Color(0xFF548BC3), Color(0xFF163A5F)],
+          colors: [AppColors.cardBlue, AppColors.cardDarkBlue],
         ),
         
         borderRadius: BorderRadius.circular(18),
@@ -38,14 +40,14 @@ class WeatherInfoCard extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: Colors.cyanAccent,
+            color: AppColors.cyan,
             size: 40,
           ),
           const SizedBox(height: 8),
           Text(
             title,
             style: const TextStyle(
-              color: Colors.white70,
+              color: AppColors.secondaryText,
               fontSize: 18,
             ),
           ),
@@ -53,7 +55,7 @@ class WeatherInfoCard extends StatelessWidget {
           Text(
             value,
             style: const TextStyle(
-              color: Colors.white,
+              color: AppColors.primaryText,
               fontSize: 25,
               fontWeight: FontWeight.bold,
             ),
