@@ -24,4 +24,4 @@ class WeatherService {
       throw Exception('Something went wrong');
     }
   }
-}
+} 
