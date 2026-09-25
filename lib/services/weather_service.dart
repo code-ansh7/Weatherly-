@@ -2,9 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:weatherly/models/weather_model.dart';
 
 class WeatherService {
-  Future<Map<String, dynamic>> getWeather(String city) async {
+  Future<WeatherModel> getWeather(String city) async {
     final apiKey = dotenv.env['OPENWEATHER_API_KEY'];
 
     final url = Uri.parse(
@@ -17,11 +18,13 @@ class WeatherService {
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
-      return jsonDecode(response.body);
+      final data = jsonDecode(response.body);
+
+      return WeatherModel.fromJson(data);
     } else if (response.statusCode == 404) {
       throw Exception('City not found');
     } else {
-      throw Exception('Something went wrong');
+      throw Exception('Unable to fetch weather');
     }
   }
-} 
+}
