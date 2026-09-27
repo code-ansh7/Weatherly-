@@ -231,7 +231,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 icon: Icons.water_drop,
                                 title: "Humidity",
                                 value: "45%",
-                                iconColor: AppColors.cardDarkBlue,
+                                iconColor: AppColors.cyan,
                               ),
 
                               WeatherStat(
