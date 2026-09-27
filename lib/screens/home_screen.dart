@@ -435,6 +435,33 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
 
         const SizedBox(height: 20),
+
+        InkWell(
+          onTap: loadWeather,
+          child: Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              // color: AppColors.cyan,
+              gradient: LinearGradient(
+                colors: [AppColors.cardDarkBlue, AppColors.cardBlue],
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+              ),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Center(
+              child: Text(
+                "Refresh Weather",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.background,
+                ),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
