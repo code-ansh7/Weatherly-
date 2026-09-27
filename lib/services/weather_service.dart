@@ -98,3 +98,27 @@ class WeatherService {
 // WeatherModel object
 //       ↓
 // return
+
+
+
+
+
+// getWeather("Tilhar")
+//         ↓
+// Future<WeatherModel>
+//         ↓
+// http.get(url)
+//         ↓
+// await
+//         ↓
+// Server response
+//         ↓
+// statusCode 200
+//         ↓
+// jsonDecode()
+//         ↓
+// data
+//         ↓
+// WeatherModel
+//         ↓
+// return

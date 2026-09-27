@@ -4,6 +4,8 @@ import 'package:weatherly/screens/weather_details_screen.dart';
 import 'package:weatherly/theme/app_colors.dart';
 import 'package:weatherly/utils/constants.dart';
 import 'package:weatherly/widgets/weather_stat.dart';
+import 'package:weatherly/models/weather_model.dart';
+import 'package:weatherly/services/weather_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,6 +15,50 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final WeatherService weatherService =
+      WeatherService(); // Weather Service ka object banaya
+
+  WeatherModel? weather; // Model initialize kiya
+
+  bool isLoading = true;
+  String? errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    //homescreen khulte hi phle ye kaam kro 
+    loadWeather(); // Real Weather Data Function
+  }
+
+  Future<void> loadWeather() async {
+    try {
+      setState(() {
+        isLoading = true;
+        errorMessage = null;
+      });
+
+      final result = await weatherService.getWeather('Tilhar');
+      //suppose user requested to weather and during request user switch the other screen
+      //so this screen will destroy
+      if (!mounted) return;//Agr screen exist nhi krti to function yhi destroy kr do 
+
+      setState(() {
+        weather = result;
+        isLoading = false;
+      });
+
+      //await ke baad agar setState() karna hai -> mounted check karna safe practice hai.
+      
+    } catch (e) {
+      if (!mounted) return;
+
+      setState(() {
+        isLoading = false;
+        errorMessage = e.toString();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +122,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(height: 4),
                     Text(
                       "Check the weather around you...",
-                      style: TextStyle(fontSize: 14, color: AppColors.secondaryText),
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: AppColors.secondaryText,
+                      ),
                     ),
                   ],
                 ),
@@ -87,7 +136,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: InputDecoration(
                     hintText: "Search city (e.g. Tilhar)",
                     hintStyle: const TextStyle(color: AppColors.secondaryText),
-                    prefixIcon: const Icon(Icons.search, color: AppColors.primaryText),
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      color: AppColors.primaryText,
+                    ),
                     filled: true,
                     fillColor: Colors.white.withOpacity(0.12),
                     contentPadding: const EdgeInsets.symmetric(vertical: 17),
@@ -212,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ],
                               ),
                               const Text(
-                                "Sunny", 
+                                "Sunny",
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
                                   fontSize: 25,
