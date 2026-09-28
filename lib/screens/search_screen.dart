@@ -27,14 +27,14 @@ class _SearchScreenState extends State<SearchScreen> {
   bool isLoading = false;
   String? errorMessage;
 
-  @override
-  void initState() {
-    super.initState();
+  // @override
+  // void initState() {
+  //   super.initState();
 
-    Future.delayed(const Duration(milliseconds: 300), () {
-      FocusScope.of(context).requestFocus();
-    });
-  }
+  //   Future.delayed(const Duration(milliseconds: 300), () {
+  //     FocusScope.of(context).requestFocus();
+  //   });
+  // }
 
   Future<void> searchCity(String city) async {
     if (city.trim().isEmpty) {
@@ -64,9 +64,27 @@ class _SearchScreenState extends State<SearchScreen> {
         return;
       }
 
+      String message = "Something went wrong. Please try again.";
+
+      if (e.toString().contains("City not found")) {
+        message = "City not found. Please check the city name.";
+      }
+
+      if (e.toString().contains("Invalid API key")) {
+        message = "Weather service is unavailable right now.";
+      }
+
+      if (e.toString().contains("Too many requests")) {
+        message = "Too many requests. Please try again later.";
+      }
+
+      if (e.toString().contains("Weather server error")) {
+        message = "Weather server is unavailable. Please try again.";
+      }
+
       setState(() {
         isLoading = false;
-        errorMessage = "City not found. Please try another city.";
+        errorMessage = message;
       });
     }
   }
