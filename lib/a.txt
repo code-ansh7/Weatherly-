@@ -6,15 +6,24 @@ import 'package:weatherly/widgets/weather_stat.dart';
 import 'package:weatherly/models/weather_model.dart';
 import 'package:weatherly/services/weather_service.dart';
 
-class HomeScreen extends StatefulWidget {
-  final WeatherModel? selectedWeather;
-  final VoidCallback onSearchTap;
+// HomeScreen open
+//        ↓
+// isLoading = true
+//        ↓
+// ⏳ Loading UI
+//        ↓
+// API request
+//        ↓
+// Response received
+//        ↓
+// weather = result
+//        ↓
+// isLoading = false
+//        ↓
+// 🌤️ Real weather UI
 
-  const HomeScreen({
-    super.key,
-    this.selectedWeather,
-    required this.onSearchTap,
-  });
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -23,9 +32,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController cityController = TextEditingController();
 
-  final WeatherService weatherService = WeatherService();
+  final WeatherService weatherService =
+      WeatherService(); // Weather Service ka object banaya
 
-  WeatherModel? weather;
+  WeatherModel? weather; // Model initialize kiya
 
   bool isLoading = true;
   String? errorMessage;
@@ -34,29 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-
-    if (widget.selectedWeather != null) {
-      weather = widget.selectedWeather;
-      currentCity = widget.selectedWeather!.cityName;
-      isLoading = false;
-    } else {
-      loadWeather("Tilhar");
-    }
-  }
-
-  @override
-  void didUpdateWidget(covariant HomeScreen oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (widget.selectedWeather != null &&
-        widget.selectedWeather != oldWidget.selectedWeather) {
-      setState(() {
-        weather = widget.selectedWeather;
-        currentCity = widget.selectedWeather!.cityName;
-        isLoading = false;
-        errorMessage = null;
-      });
-    }
+    //homescreen khulte hi phle ye kaam kro
+    //show default screen weather
+    loadWeather("Tilhar"); // Real Weather Data Function
   }
 
   Future<void> loadWeather(String city) async {
@@ -64,24 +54,28 @@ class _HomeScreenState extends State<HomeScreen> {
       currentCity = city;
 
       setState(() {
+        // Abhi request gayi nhi hai tb tk isLoading = true
         isLoading = true;
         errorMessage = null;
       });
 
+      //API calling
       final result = await weatherService.getWeather(city);
 
-      if (!mounted) {
-        return;
-      }
+      //suppose user requested to weather and during request user switch the other screen
+      //so this screen will destroy
+      if (!mounted)
+        return; //Agr screen exist nhi krti to function yhi destroy kr do
 
       setState(() {
+        // After Response
         weather = result;
         isLoading = false;
       });
+
+      //await ke baad agar setState() karna hai -> mounted check karna safe practice hai.
     } catch (e) {
-      if (!mounted) {
-        return;
-      }
+      if (!mounted) return;
 
       setState(() {
         isLoading = false;
@@ -90,18 +84,21 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  // Remove decimal points in temp
   String cleanTemperature(String temperature) {
     double value = double.parse(temperature);
 
     return value.toStringAsFixed(0);
   }
 
+  // For Cleaning wind Speed
   String cleanWind(String windSpeed) {
     double value = double.parse(windSpeed);
 
     return value.toStringAsFixed(1);
   }
 
+  //For Real Icon
   IconData getWeatherIcon(String condition) {
     if (condition == "Clear") {
       return Icons.wb_sunny;
@@ -134,6 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Icons.cloud;
   }
 
+  //For icon color
   Color getWeatherIconColor(String condition) {
     if (condition == "Clear") {
       return AppColors.sunny;
@@ -166,6 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Colors.white70;
   }
 
+  //For real date
   String getCurrentDate() {
     DateTime now = DateTime.now();
 
@@ -192,43 +191,35 @@ class _HomeScreenState extends State<HomeScreen> {
     return "$day, ${now.day} $month";
   }
 
+  //For human-friendly weather condition
   String getWeatherCondition(String condition) {
     if (condition == "Clear") {
       return "Clear Sky";
     }
-
     if (condition == "Clouds") {
       return "Cloudy";
     }
-
     if (condition == "Rain") {
       return "Rainy";
     }
-
     if (condition == "Drizzle") {
       return "Light Drizzle";
     }
-
     if (condition == "Thunderstorm") {
       return "Thunderstorm";
     }
-
     if (condition == "Snow") {
       return "Snowy";
     }
-
     if (condition == "Mist") {
       return "Misty";
     }
-
     if (condition == "Fog") {
       return "Foggy";
     }
-
     if (condition == "Haze") {
       return "Hazy";
     }
-
     return condition;
   }
 
@@ -273,17 +264,20 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+
       child: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20),
-            child: getWeatherUI(),
+
+            child: getWeatherUI(), // Decide What we will render
           ),
         ),
       ),
     );
   }
 
+  //Control UI
   Widget getWeatherUI() {
     if (isLoading) {
       return SizedBox(
@@ -291,7 +285,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               CircularProgressIndicator(color: AppColors.cyan),
               SizedBox(height: 16),
               Text(
@@ -305,14 +299,17 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     if (errorMessage != null) {
+      // Agr eoor aaye to
       return _buildErrorState();
     }
 
     return buildWeatherUI();
   }
 
+  //Success UI
   Widget buildWeatherUI() {
     return Column(
+      // Agr loading false hai to ye
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Column(
@@ -337,26 +334,49 @@ class _HomeScreenState extends State<HomeScreen> {
 
         const SizedBox(height: 20),
 
-        GestureDetector(
-          onTap: widget.onSearchTap,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.12),
-              borderRadius: BorderRadius.circular(15),
+        TextField(
+          controller: cityController,
+
+          //For Input Data styling
+          style: const TextStyle(color: AppColors.primaryText, fontSize: 16),
+
+          onSubmitted: (value) {
+            if (value.trim().isEmpty) {
+              return;
+            }
+            loadWeather(value.trim());
+          },
+
+          decoration: InputDecoration(
+            hintText: "Search city (e.g. Tilhar)",
+
+            hintStyle: const TextStyle(color: AppColors.secondaryText),
+
+            prefixIcon: const Icon(Icons.search, color: AppColors.primaryText),
+
+            filled: true,
+
+            fillColor: Colors.white.withOpacity(0.12),
+
+            contentPadding: const EdgeInsets.symmetric(vertical: 17),
+
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(18),
+              borderSide: BorderSide.none,
             ),
-            child: const Row(
-              children: [
-                Icon(Icons.search, color: Colors.cyanAccent),
-                SizedBox(width: 12),
-                Text(
-                  "Search city...",
-                  style: TextStyle(color: Colors.white70, fontSize: 16),
-                ),
-              ],
+
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(18),
+              borderSide: BorderSide(color: Colors.white.withOpacity(0.15)),
+            ),
+
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(18),
+              borderSide: const BorderSide(color: AppColors.cyan, width: 1.5),
             ),
           ),
         ),
+
         const SizedBox(height: 22),
 
         GestureDetector(
@@ -397,17 +417,18 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
+                            // Real City
                             weather!.cityName,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
                               color: AppColors.primaryText,
                             ),
                           ),
-                          const SizedBox(height: 4),
+                          SizedBox(height: 4),
                           Text(
                             getCurrentDate(),
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 18,
                               color: AppColors.secondaryText,
                             ),
@@ -447,9 +468,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: getWeatherIconColor(weather!.condition),
                           ),
                           const SizedBox(width: 20),
+
                           Text(
+                            // Real Temprature after cleaning
                             "${cleanTemperature(weather!.temperature)}°C",
-                            style: const TextStyle(
+
+                            style: TextStyle(
                               fontSize: 52,
                               fontWeight: FontWeight.bold,
                               color: AppColors.primaryText,
@@ -457,10 +481,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
+
                       Text(
-                        getWeatherCondition(weather!.condition),
+                        getWeatherCondition(
+                          weather!.condition,
+                        ), // Real Condition
                         textAlign: TextAlign.left,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 25,
                           color: AppColors.secondaryText,
                         ),
@@ -479,6 +506,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         value: "${weather!.humidity}%",
                         iconColor: AppColors.cyan,
                       ),
+
                       WeatherStat(
                         icon: Icons.air,
                         title: "Wind",
@@ -499,18 +527,20 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: () {
             loadWeather(currentCity);
           },
+
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
+              // color: AppColors.cyan,
+              gradient: LinearGradient(
                 colors: [AppColors.cardDarkBlue, AppColors.cardBlue],
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
               ),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: const Center(
+            child: Center(
               child: Text(
                 "Refresh Weather",
                 style: TextStyle(
@@ -526,13 +556,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  //Error UI
   Widget _buildErrorState() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Icon(Icons.cloud_off_rounded, color: Colors.white70, size: 60),
+
           const SizedBox(height: 16),
+
           const Text(
             "Unable to load weather",
             style: TextStyle(
@@ -541,13 +574,17 @@ class _HomeScreenState extends State<HomeScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
+
           const SizedBox(height: 8),
+
           Text(
             errorMessage ?? "Something went wrong",
             textAlign: TextAlign.center,
             style: const TextStyle(color: Colors.white70, fontSize: 14),
           ),
+
           const SizedBox(height: 20),
+
           ElevatedButton.icon(
             onPressed: () {
               loadWeather(currentCity);
@@ -559,237 +596,91 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  @override
-  void dispose() {
-    cityController.dispose();
-    super.dispose();
-  }
 }
 
-/*
-====================================================================
-🏠 WEATHERLY — HOME SCREEN ARCHITECTURE
-====================================================================
-
-HomeScreen ka main kaam:
-→ Weather data ko screen par display karna.
-→ Loading state dikhana.
-→ Error state dikhana.
-→ Current city ka weather refresh karna.
-
-
---------------------------------------------------------------------
-🌤️ 1. APP FIRST TIME HOME PAR AATA HAI
---------------------------------------------------------------------
-
-MainNavigation
-      ↓
-HomeScreen
-      ↓
-initState()
-      ↓
-Kya SearchScreen se koi weather mila?
-      ↓
-   ┌───────────────┐
-   │               │
-  NO              YES
-   │               │
-   ↓               ↓
-Tilhar ka       received weather
-weather API     ko use karo
-se lao
-   │               │
-   └───────┬───────┘
-           ↓
-      WeatherModel
-           ↓
-      Home UI
-
-
-Agar selectedWeather null hai:
-→ Home khud "Tilhar" ka weather API se fetch karta hai.
-
-
-Agar selectedWeather available hai:
-→ Home API ko dobara call nahi karta.
-→ SearchScreen se mila weather directly show karta hai.
-
-
---------------------------------------------------------------------
-🌐 2. HOME WEATHER API FLOW
---------------------------------------------------------------------
-
-loadWeather("Tilhar")
-        ↓
-WeatherService
-        ↓
-OpenWeather API
-        ↓
-JSON Response
-        ↓
-WeatherModel
-        ↓
-weather = result
-        ↓
-isLoading = false
-        ↓
-Home Weather UI
-
-
-HomeScreen khud API ka complicated kaam nahi karta.
-
-WeatherService:
-→ API call karta hai.
-
-WeatherModel:
-→ API data ko ek object mein rakhta hai.
-
-HomeScreen:
-→ Data ko screen par display karta hai.
-
-
---------------------------------------------------------------------
-🔄 3. SEARCHSCREEN SE WEATHER AANE PAR
---------------------------------------------------------------------
-
-SearchScreen
-      ↓
-User "Mumbai" search karta hai
-      ↓
-API call
-      ↓
-Mumbai ka WeatherModel
-      ↓
-MainNavigation
-      ↓
-selectedWeather
-      ↓
-HomeScreen
-      ↓
-didUpdateWidget()
-      ↓
-weather = selectedWeather
-      ↓
-Home UI Mumbai ka weather show karta hai.
-
-
-Important:
-
-HomeScreen SearchScreen ko directly call nahi karta.
-
-HomeScreen ko sirf MainNavigation ke through
-selectedWeather milta hai.
-
-
---------------------------------------------------------------------
-🔄 4. REFRESH WEATHER
---------------------------------------------------------------------
-
-User "Refresh Weather" press karta hai
-             ↓
-loadWeather(currentCity)
-             ↓
-WeatherService
-             ↓
-API
-             ↓
-Fresh WeatherModel
-             ↓
-weather update
-             ↓
-UI update
-
-
---------------------------------------------------------------------
-🎨 5. HOME UI STATES
---------------------------------------------------------------------
-
-HomeScreen ke paas mainly 3 states hain:
-
-
-1️⃣ LOADING
-
-isLoading == true
-
-        ↓
-
-"CircularProgressIndicator"
-"Fetching weather..."
-
-
-2️⃣ ERROR
-
-errorMessage != null
-
-        ↓
-
-"Unable to load weather"
-"Try Again"
-
-
-3️⃣ SUCCESS
-
-Loading false
-AND
-errorMessage null
-
-        ↓
-
-Real Weather UI
-
-
---------------------------------------------------------------------
-📦 IMPORTANT VARIABLES
---------------------------------------------------------------------
-
-weather
-
-→ HomeScreen par currently displayed weather.
-
-
-selectedWeather
-
-→ MainNavigation se HomeScreen ko mila weather.
-
-
-weatherService
-
-→ API se weather data fetch karne wala service.
-
-
-currentCity
-
-→ Abhi Home par jis city ka weather loaded hai.
-
-
-isLoading
-
-→ API request chal rahi hai ya nahi.
-
-
-errorMessage
-
-→ API request fail hone par error store karta hai.
-
-
---------------------------------------------------------------------
-🧠 HOME SCREEN KA SIMPLE RULE
---------------------------------------------------------------------
-
-HomeScreen ka kaam:
-
-"Weather lana + Weather dikhana"
-
-API ka main kaam:
-→ WeatherService
-
-Data ka container:
-→ WeatherModel
-
-Screens ke beech data bhejna:
-→ MainNavigation
-
-
-====================================================================
-*/
+//     HomeScreen
+//          │
+//          ▼
+//    initState()
+//          │
+//          ▼
+//    loadWeather()
+//          │
+//          ▼
+// isLoading = true
+//          │
+//          ▼
+// WeatherService
+//          │
+//          ▼
+//   OpenWeather API
+//          │
+//          ▼
+//    JSON Response
+//          │
+//          ▼
+//    WeatherModel
+//          │
+//          ▼
+// weather = result
+//          │
+//          ▼
+// isLoading = false
+//          │
+//          ▼
+// ┌─────────────────┐
+// │   REAL WEATHER  │
+// │                 │
+// │ Tilhar          │
+// │ 32°C            │
+// │ Clear            │
+// │ 45%              │
+// │ 5.2 m/s          │
+// └─────────────────┘
+
+//            loadWeather()
+//                 │
+//       ┌─────────┴─────────┐
+//       │                   │
+//       ▼                   ▼
+//  isLoading=true       API request
+//       │                   │
+//       ▼                   ▼
+//  ⏳ Loading          Response?
+//                           │
+//                ┌──────────┴──────────┐
+//                │                     │
+//             Success                Error
+//                │                     │
+//                ▼                     ▼
+//       weather = result       errorMessage
+//       isLoading=false        isLoading=false
+//                │                     │
+//                ▼                     ▼
+//            🌤️ Weather            ❌ Error
+//                                     │
+//                                     ▼
+//                                 🔄 Retry
+
+// _HomeScreenState
+// │
+// ├── weatherService
+// ├── weather
+// ├── isLoading
+// ├── errorMessage
+// │
+// ├── initState()
+// │
+// ├── loadWeather()
+// │
+// ├── getWeatherUI()
+// │
+// ├── buildWeatherUI()
+// │
+// ├── cleanTemperature()
+// ├── cleanWind()
+// │
+// ├── getWeatherIcon()       ← 🆕
+// ├── getWeatherIconColor()  ← 🆕
+// │
+// └── _buildErrorState()

@@ -22,4 +22,6 @@ class AppColors {
 
   static const Color humidity = Color(0xFF29B6F6);
   static const Color wind = Color(0xFF00E5FF);
+
+  static  Color errorButton = Colors.redAccent.withOpacity(0.3);
 }
