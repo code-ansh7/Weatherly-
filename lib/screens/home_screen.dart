@@ -312,6 +312,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildWeatherUI() {
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

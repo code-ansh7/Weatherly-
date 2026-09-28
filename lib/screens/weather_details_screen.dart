@@ -12,6 +12,76 @@ class WeatherDetailsScreen extends StatefulWidget {
 }
 
 class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
+  IconData getWeatherIcon(String condition) {
+    String weather = condition.toLowerCase();
+
+    if (weather.contains("clear")) {
+      return Icons.wb_sunny;
+    }
+
+    if (weather.contains("cloud")) {
+      return Icons.cloud;
+    }
+
+    if (weather.contains("rain")) {
+      return Icons.water_drop;
+    }
+
+    if (weather.contains("thunder")) {
+      return Icons.thunderstorm;
+    }
+
+    if (weather.contains("snow")) {
+      return Icons.ac_unit;
+    }
+
+    if (weather.contains("mist") ||
+        weather.contains("fog") ||
+        weather.contains("haze")) {
+      return Icons.cloud;
+    }
+
+    return Icons.wb_sunny;
+  }
+
+  Color getWeatherIconColor(String condition) {
+    String weather = condition.toLowerCase();
+
+    if (weather.contains("clear")) {
+      return AppColors.sunny;
+    }
+
+    if (weather.contains("cloud")) {
+      return Colors.white70;
+    }
+
+    if (weather.contains("rain")) {
+      return AppColors.humidity;
+    }
+
+    if (weather.contains("thunder")) {
+      return Colors.amber;
+    }
+
+    if (weather.contains("snow")) {
+      return Colors.lightBlueAccent;
+    }
+
+    if (weather.contains("mist") ||
+        weather.contains("fog") ||
+        weather.contains("haze")) {
+      return Colors.blueGrey.shade200;
+    }
+
+    return AppColors.sunny;
+  }
+
+String cleanTemperature(String temperature) {
+  double value = double.tryParse(temperature) ?? 0;
+
+  return value.toStringAsFixed(0);
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,9 +178,16 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.sunny, color: AppColors.sunny, size: 100),
+                          Icon(
+                            getWeatherIcon(widget.weather.condition),
+                            color: getWeatherIconColor(
+                              widget.weather.condition,
+                            ),
+                            size: 100,
+                          ),
+
                           Text(
-                            "${widget.weather.temperature}°C",
+                            "${cleanTemperature(widget.weather.temperature)}°C",
                             style: const TextStyle(
                               color: AppColors.primaryText,
                               fontSize: 52,
