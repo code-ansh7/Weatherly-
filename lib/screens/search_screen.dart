@@ -20,13 +20,21 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final WeatherService weatherService = WeatherService();
 
-  final TextEditingController cityController =
-      TextEditingController();
+  final TextEditingController cityController = TextEditingController();
 
   WeatherModel? weather;
 
   bool isLoading = false;
   String? errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(const Duration(milliseconds: 300), () {
+      FocusScope.of(context).requestFocus();
+    });
+  }
 
   Future<void> searchCity(String city) async {
     if (city.trim().isEmpty) {
@@ -39,8 +47,7 @@ class _SearchScreenState extends State<SearchScreen> {
     });
 
     try {
-      final result =
-          await weatherService.getWeather(city.trim());
+      final result = await weatherService.getWeather(city.trim());
 
       if (!mounted) {
         return;
@@ -59,8 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
       setState(() {
         isLoading = false;
-        errorMessage =
-            "City not found. Please try another city.";
+        errorMessage = "City not found. Please try another city.";
       });
     }
   }
@@ -92,14 +98,10 @@ class _SearchScreenState extends State<SearchScreen> {
       child: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 15,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
 
             child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
 
               children: [
                 Row(
@@ -107,8 +109,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.12),
-                        borderRadius:
-                            BorderRadius.circular(14),
+                        borderRadius: BorderRadius.circular(14),
                       ),
 
                       child: IconButton(
@@ -124,8 +125,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     const SizedBox(width: 15),
 
                     const Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
 
                       children: [
                         Text(
@@ -143,8 +143,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
                           style: TextStyle(
                             fontSize: 13,
-                            color:
-                                AppColors.secondaryText,
+                            color: AppColors.secondaryText,
                           ),
                         ),
                       ],
@@ -155,6 +154,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 const SizedBox(height: 28),
 
                 TextField(
+                  autofocus: true,
                   controller: cityController,
 
                   style: const TextStyle(
@@ -162,20 +162,16 @@ class _SearchScreenState extends State<SearchScreen> {
                     fontSize: 16,
                   ),
 
-                  textInputAction:
-                      TextInputAction.search,
+                  textInputAction: TextInputAction.search,
 
                   onSubmitted: (value) {
                     searchCity(value);
                   },
 
                   decoration: InputDecoration(
-                    hintText:
-                        "Search city (e.g. Tilhar)",
+                    hintText: "Search city (e.g. Tilhar)",
 
-                    hintStyle: const TextStyle(
-                      color: AppColors.secondaryText,
-                    ),
+                    hintStyle: const TextStyle(color: AppColors.secondaryText),
 
                     prefixIcon: const Icon(
                       Icons.search,
@@ -184,34 +180,24 @@ class _SearchScreenState extends State<SearchScreen> {
 
                     filled: true,
 
-                    fillColor:
-                        Colors.white.withOpacity(0.12),
+                    fillColor: Colors.white.withOpacity(0.12),
 
-                    contentPadding:
-                        const EdgeInsets.symmetric(
-                      vertical: 17,
-                    ),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 17),
 
                     border: OutlineInputBorder(
-                      borderRadius:
-                          BorderRadius.circular(18),
+                      borderRadius: BorderRadius.circular(18),
                       borderSide: BorderSide.none,
                     ),
 
-                    enabledBorder:
-                        OutlineInputBorder(
-                      borderRadius:
-                          BorderRadius.circular(18),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
                       borderSide: BorderSide(
-                        color:
-                            Colors.white.withOpacity(0.15),
+                        color: Colors.white.withOpacity(0.15),
                       ),
                     ),
 
-                    focusedBorder:
-                        OutlineInputBorder(
-                      borderRadius:
-                          BorderRadius.circular(18),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
                       borderSide: const BorderSide(
                         color: AppColors.cyan,
                         width: 1.5,
@@ -227,9 +213,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     child: Padding(
                       padding: EdgeInsets.all(20),
 
-                      child: CircularProgressIndicator(
-                        color: AppColors.cyan,
-                      ),
+                      child: CircularProgressIndicator(color: AppColors.cyan),
                     ),
                   ),
 
@@ -240,16 +224,11 @@ class _SearchScreenState extends State<SearchScreen> {
                     padding: const EdgeInsets.all(16),
 
                     decoration: BoxDecoration(
-                      color:
-                          Colors.red.withOpacity(0.20),
+                      color: Colors.red.withOpacity(0.20),
 
-                      borderRadius:
-                          BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(16),
 
-                      border: Border.all(
-                        color:
-                            Colors.red.withOpacity(0.3),
-                      ),
+                      border: Border.all(color: Colors.red.withOpacity(0.3)),
                     ),
 
                     child: Column(
@@ -264,8 +243,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
                         Text(
                           errorMessage!,
-                          textAlign:
-                              TextAlign.center,
+                          textAlign: TextAlign.center,
 
                           style: const TextStyle(
                             color: Colors.white,
@@ -277,16 +255,12 @@ class _SearchScreenState extends State<SearchScreen> {
 
                         ElevatedButton.icon(
                           onPressed: () {
-                            searchCity(
-                              cityController.text,
-                            );
+                            searchCity(cityController.text);
                           },
 
-                          icon:
-                              const Icon(Icons.refresh),
+                          icon: const Icon(Icons.refresh),
 
-                          label:
-                              const Text("Try Again"),
+                          label: const Text("Try Again"),
                         ),
                       ],
                     ),
@@ -306,25 +280,13 @@ class _SearchScreenState extends State<SearchScreen> {
 
                 const SizedBox(height: 15),
 
-                cityCard(
-                  "Tilhar",
-                  "Shahjahanpur, Uttar Pradesh",
-                ),
+                cityCard("Tilhar", "Shahjahanpur, Uttar Pradesh"),
 
-                cityCard(
-                  "Bareilly",
-                  "Uttar Pradesh, India",
-                ),
+                cityCard("Bareilly", "Uttar Pradesh, India"),
 
-                cityCard(
-                  "New Delhi",
-                  "Delhi, India",
-                ),
+                cityCard("New Delhi", "Delhi, India"),
 
-                cityCard(
-                  "Mumbai",
-                  "Maharashtra, India",
-                ),
+                cityCard("Mumbai", "Maharashtra, India"),
               ],
             ),
           ),
@@ -333,10 +295,7 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Widget cityCard(
-    String cityName,
-    String state,
-  ) {
+  Widget cityCard(String cityName, String state) {
     return InkWell(
       borderRadius: BorderRadius.circular(18),
 
@@ -349,37 +308,25 @@ class _SearchScreenState extends State<SearchScreen> {
       child: Container(
         width: double.infinity,
 
-        margin:
-            const EdgeInsets.only(bottom: 12),
+        margin: const EdgeInsets.only(bottom: 12),
 
-        padding:
-            const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 14,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
 
         decoration: BoxDecoration(
-          color:
-              Colors.white.withOpacity(0.10),
+          color: Colors.white.withOpacity(0.10),
 
-          borderRadius:
-              BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(18),
 
-          border: Border.all(
-            color:
-                Colors.white.withOpacity(0.12),
-          ),
+          border: Border.all(color: Colors.white.withOpacity(0.12)),
         ),
 
         child: Row(
           children: [
             Container(
-              padding:
-                  const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
 
               decoration: BoxDecoration(
-                color:
-                    Colors.cyanAccent.withOpacity(0.12),
+                color: Colors.cyanAccent.withOpacity(0.12),
 
                 shape: BoxShape.circle,
               ),
@@ -394,8 +341,7 @@ class _SearchScreenState extends State<SearchScreen> {
             const SizedBox(width: 15),
 
             Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
 
               children: [
                 Text(
@@ -434,9 +380,6 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
-
-
-
 
 /*
 ====================================================================

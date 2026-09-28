@@ -76,11 +76,84 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
     return AppColors.sunny;
   }
 
-String cleanTemperature(String temperature) {
-  double value = double.tryParse(temperature) ?? 0;
+  String cleanTemperature(String temperature) {
+    double value = double.tryParse(temperature) ?? 0;
 
-  return value.toStringAsFixed(0);
-}
+    return value.toStringAsFixed(0);
+  }
+
+  String getCurrentDate() {
+    DateTime now = DateTime.now();
+
+    List<String> months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    List<String> weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+    String weekday = weekdays[now.weekday - 1];
+    String month = months[now.month - 1];
+
+    int hour = now.hour;
+    String period = "AM";
+
+    if (hour >= 12) {
+      period = "PM";
+    }
+
+    if (hour == 0) {
+      hour = 12;
+    } else if (hour > 12) {
+      hour = hour - 12;
+    }
+
+    String minute = now.minute.toString().padLeft(2, "0");
+
+    return "$weekday ${now.day} $month, $hour:$minute $period";
+  }
+
+  String getWeatherCondition(String condition) {
+    String weather = condition.toLowerCase();
+
+    if (weather.contains("clear")) {
+      return "Clear Sky";
+    }
+
+    if (weather.contains("cloud")) {
+      return "Cloudy";
+    }
+
+    if (weather.contains("rain")) {
+      return "Rainy";
+    }
+
+    if (weather.contains("thunder")) {
+      return "Thunderstorm";
+    }
+
+    if (weather.contains("snow")) {
+      return "Snowy";
+    }
+
+    if (weather.contains("mist") ||
+        weather.contains("fog") ||
+        weather.contains("haze")) {
+      return "Misty";
+    }
+
+    return condition;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +210,7 @@ String cleanTemperature(String temperature) {
                               ),
                             ),
                             Text(
-                              "Tue 22 Sep, 4:12 AM",
+                              getCurrentDate(),
                               style: TextStyle(
                                 fontSize: 13,
                                 color: AppColors.secondaryText,
@@ -195,7 +268,7 @@ String cleanTemperature(String temperature) {
                             ),
                           ),
                           Text(
-                            widget.weather.condition,
+                            getWeatherCondition(widget.weather.condition),
                             style: const TextStyle(
                               color: AppColors.secondaryText,
                               fontSize: 17,
