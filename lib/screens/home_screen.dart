@@ -185,6 +185,38 @@ class _HomeScreenState extends State<HomeScreen> {
     return "$day, ${now.day} $month";
   }
 
+  //For human-friendly weather condition
+  String getWeatherCondition(String condition) {
+    if (condition == "Clear") {
+      return "Clear Sky";
+    }
+    if (condition == "Clouds") {
+      return "Cloudy";
+    }
+    if (condition == "Rain") {
+      return "Rainy";
+    }
+    if (condition == "Drizzle") {
+      return "Light Drizzle";
+    }
+    if (condition == "Thunderstorm") {
+      return "Thunderstorm";
+    }
+    if (condition == "Snow") {
+      return "Snowy";
+    }
+    if (condition == "Mist") {
+      return "Misty";
+    }
+    if (condition == "Fog") {
+      return "Foggy";
+    }
+    if (condition == "Haze") {
+      return "Hazy";
+    }
+    return condition;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -425,7 +457,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
 
                       Text(
-                        weather!.condition, // Real Condition
+                        getWeatherCondition(weather!.condition), // Real Condition
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 25,
