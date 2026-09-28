@@ -30,6 +30,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController cityController = TextEditingController();
+
   final WeatherService weatherService =
       WeatherService(); // Weather Service ka object banaya
 
@@ -37,16 +39,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   bool isLoading = true;
   String? errorMessage;
+  String currentCity = "Tilhar";
 
   @override
   void initState() {
     super.initState();
     //homescreen khulte hi phle ye kaam kro
-    loadWeather(); // Real Weather Data Function
+    //show default screen weather
+    loadWeather("Tilhar"); // Real Weather Data Function
   }
 
-  Future<void> loadWeather() async {
+  Future<void> loadWeather(String city) async {
     try {
+      currentCity = city;
+
       setState(() {
         // Abhi request gayi nhi hai tb tk isLoading = true
         isLoading = true;
@@ -54,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
       });
 
       //API calling
-      final result = await weatherService.getWeather('Tilhar');
+      final result = await weatherService.getWeather(city);
 
       //suppose user requested to weather and during request user switch the other screen
       //so this screen will destroy
@@ -329,21 +335,41 @@ class _HomeScreenState extends State<HomeScreen> {
         const SizedBox(height: 20),
 
         TextField(
+          controller: cityController,
+
+          //For Input Data styling
+          style: const TextStyle(color: AppColors.primaryText, fontSize: 16),
+
+          onSubmitted: (value) {
+            if (value.trim().isEmpty) {
+              return;
+            }
+            loadWeather(value.trim());
+          },
+
           decoration: InputDecoration(
             hintText: "Search city (e.g. Tilhar)",
+
             hintStyle: const TextStyle(color: AppColors.secondaryText),
+
             prefixIcon: const Icon(Icons.search, color: AppColors.primaryText),
+
             filled: true,
+
             fillColor: Colors.white.withOpacity(0.12),
+
             contentPadding: const EdgeInsets.symmetric(vertical: 17),
+
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18),
               borderSide: BorderSide.none,
             ),
+
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18),
               borderSide: BorderSide(color: Colors.white.withOpacity(0.15)),
             ),
+
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18),
               borderSide: const BorderSide(color: AppColors.cyan, width: 1.5),
@@ -457,7 +483,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
 
                       Text(
-                        getWeatherCondition(weather!.condition), // Real Condition
+                        getWeatherCondition(
+                          weather!.condition,
+                        ), // Real Condition
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 25,
@@ -496,7 +524,10 @@ class _HomeScreenState extends State<HomeScreen> {
         const SizedBox(height: 20),
 
         InkWell(
-          onTap: loadWeather,
+          onTap: () {
+            loadWeather(currentCity);
+          },
+
           child: Container(
             width: double.infinity,
             padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -555,7 +586,9 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: 20),
 
           ElevatedButton.icon(
-            onPressed: loadWeather,
+            onPressed: () {
+              loadWeather(currentCity);
+            },
             icon: const Icon(Icons.refresh),
             label: const Text("Try Again"),
           ),
