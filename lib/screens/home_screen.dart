@@ -158,6 +158,33 @@ class _HomeScreenState extends State<HomeScreen> {
     return Colors.white70;
   }
 
+  //For real date
+  String getCurrentDate() {
+    DateTime now = DateTime.now();
+
+    List<String> days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+    List<String> months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    String day = days[now.weekday - 1];
+    String month = months[now.month - 1];
+
+    return "$day, ${now.day} $month";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -216,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget getWeatherUI() {
     if (isLoading) {
       return SizedBox(
-        height: 500,
+        height: 700,
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -342,7 +369,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           SizedBox(height: 4),
                           Text(
-                            "Sun, 20 Sep",
+                            getCurrentDate(),
                             style: TextStyle(
                               fontSize: 18,
                               color: AppColors.secondaryText,
