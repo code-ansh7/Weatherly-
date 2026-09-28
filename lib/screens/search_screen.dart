@@ -41,6 +41,8 @@ class _SearchScreenState extends State<SearchScreen> {
       return;
     }
 
+    FocusScope.of(context).unfocus();//keyboard bnd krne k liye jb data load ho rha ho
+
     setState(() {
       isLoading = true;
       errorMessage = null;
@@ -272,6 +274,10 @@ class _SearchScreenState extends State<SearchScreen> {
                         const SizedBox(height: 12),
 
                         ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.errorButton,
+                            foregroundColor: AppColors.background
+                          ),
                           onPressed: () {
                             searchCity(cityController.text);
                           },

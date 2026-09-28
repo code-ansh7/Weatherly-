@@ -9,11 +9,13 @@ import 'package:weatherly/services/weather_service.dart';
 class HomeScreen extends StatefulWidget {
   final WeatherModel? selectedWeather;
   final VoidCallback onSearchTap;
+  final VoidCallback onSettingsTap;
 
   const HomeScreen({
     super.key,
     this.selectedWeather,
     required this.onSearchTap,
+    required this.onSettingsTap
   });
 
   @override
@@ -234,28 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColors.appBar,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu, color: AppColors.iconColor, size: 24),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: CircleAvatar(
-              radius: 20,
-              backgroundColor: AppColors.circleAvatar,
-              child: const Icon(Icons.person, color: AppColors.iconColor),
-            ),
-          ),
-        ],
-      ),
-      body: homeBody(),
-    );
+    return Scaffold(backgroundColor: AppColors.background, body: homeBody());
   }
 
   Widget homeBody() {
@@ -277,7 +258,61 @@ class _HomeScreenState extends State<HomeScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20),
-            child: getWeatherUI(),
+            child: Column(
+              children: [
+                // Weatherly Header
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Weatherly",
+                          style: TextStyle(
+                            color: AppColors.primaryText,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 2),
+                        Text(
+                          "More Than Weather",
+                          style: TextStyle(
+                            color: AppColors.secondaryText,
+                            fontSize: 12,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.10),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white.withOpacity(0.10),
+                        ),
+                      ),
+                      child: IconButton(
+                        onPressed: widget.onSettingsTap,
+                        icon: const Icon(
+                          Icons.settings_outlined,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 25),
+
+                // Existing Home UI
+                getWeatherUI(),
+              ],
+            ),
           ),
         ),
       ),
@@ -312,7 +347,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildWeatherUI() {
-    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -365,9 +399,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => WeatherDetailsScreen(
-                  weather: weather!,
-                ),
+                builder: (context) => WeatherDetailsScreen(weather: weather!),
               ),
             );
           },
@@ -424,9 +456,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             context,
                             CupertinoPageRoute(
                               builder: (context) =>
-                                  WeatherDetailsScreen(
-                                    weather: weather!,
-                                  ),
+                                  WeatherDetailsScreen(weather: weather!),
                             ),
                           );
                         },

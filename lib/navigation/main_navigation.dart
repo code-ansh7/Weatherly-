@@ -26,9 +26,16 @@ class _MainNavigationState extends State<MainNavigation> {
      
       HomeScreen(
         selectedWeather: selectedWeather, //yha pr de diya
+        
         onSearchTap: (){
           setState(() {
             index = 1;
+          });
+        },
+
+        onSettingsTap: () {
+          setState(() {
+            index = 2;
           });
         },
       ),
