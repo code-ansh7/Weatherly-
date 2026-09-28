@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:weatherly/widgets/weather_info_card.dart';
 import 'package:weatherly/theme/app_colors.dart';
+import 'package:weatherly/models/weather_model.dart';
 
 class WeatherDetailsScreen extends StatefulWidget {
-  const WeatherDetailsScreen({super.key});
+  final WeatherModel weather;
+  const WeatherDetailsScreen({super.key, required this.weather});
 
   @override
   State<WeatherDetailsScreen> createState() => _WeatherDetailsScreenState();
@@ -37,7 +39,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                   //Header
                   Row(
                     children: [
-                      Container( 
+                      Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
                           color: Colors.white.withOpacity(0.12),
@@ -57,7 +59,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                         child: Column(
                           children: [
                             Text(
-                              "Tilhar",
+                              widget.weather.cityName,
                               style: TextStyle(
                                 fontSize: 27,
                                 fontWeight: FontWeight.bold,
@@ -106,13 +108,9 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(
-                            Icons.sunny,
-                            color: AppColors.sunny,
-                            size: 100,
-                          ),
+                          Icon(Icons.sunny, color: AppColors.sunny, size: 100),
                           Text(
-                            "32°C",
+                            "${widget.weather.temperature}°C",
                             style: const TextStyle(
                               color: AppColors.primaryText,
                               fontSize: 52,
@@ -120,7 +118,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                             ),
                           ),
                           Text(
-                            "Sunny",
+                            widget.weather.condition,
                             style: const TextStyle(
                               color: AppColors.secondaryText,
                               fontSize: 17,
@@ -140,7 +138,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                             child: WeatherInfoCard(
                               icon: Icons.water_drop,
                               title: 'Humidity',
-                              value: '45%',
+                              value: '${widget.weather.humidity}%',
                             ),
                           ),
 
@@ -150,7 +148,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                             child: WeatherInfoCard(
                               icon: Icons.air,
                               title: 'Wind Speed',
-                              value: '12 Km/h',
+                              value: '${widget.weather.windSpeed} m/s',
                             ),
                           ),
                         ],
@@ -164,7 +162,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                             child: WeatherInfoCard(
                               icon: Icons.speed,
                               title: "Pressure",
-                              value: "1012 hPa",
+                              value: "${widget.weather.pressure} hPa",
                             ),
                           ),
                           const SizedBox(width: 10),
@@ -172,7 +170,7 @@ class _WeatherDetailsScreenState extends State<WeatherDetailsScreen> {
                             child: WeatherInfoCard(
                               icon: Icons.visibility,
                               title: "Visibility",
-                              value: "10 km",
+                              value: "${widget.weather.visibility} km",
                             ),
                           ),
                         ],

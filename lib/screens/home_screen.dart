@@ -364,7 +364,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const WeatherDetailsScreen(),
+                builder: (context) => WeatherDetailsScreen(
+                  weather: weather!,
+                ),
               ),
             );
           },
@@ -421,7 +423,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             context,
                             CupertinoPageRoute(
                               builder: (context) =>
-                                  const WeatherDetailsScreen(),
+                                  WeatherDetailsScreen(
+                                    weather: weather!,
+                                  ),
                             ),
                           );
                         },
