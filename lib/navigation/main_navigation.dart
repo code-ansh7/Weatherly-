@@ -26,7 +26,7 @@ class _MainNavigationState extends State<MainNavigation> {
      
       HomeScreen(
         selectedWeather: selectedWeather, //yha pr de diya
-        
+
         onSearchTap: (){
           setState(() {
             index = 1;
@@ -54,7 +54,7 @@ class _MainNavigationState extends State<MainNavigation> {
             // Search successful hone ke baad Home par jao.
             index = 0;
           });
-        },
+        },  
       ),
 
       SettingsScreen(

@@ -108,7 +108,7 @@ class OnboardingScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 SizedBox(
-                  width: double.infinity,
+                  width: double.infinity, 
                   height: 56,
                   child: ElevatedButton(
                     onPressed: () {

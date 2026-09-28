@@ -540,7 +540,7 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: [AppColors.cardDarkBlue, AppColors.cardBlue],
-                begin: Alignment.topRight,
+                begin: Alignment.topRight,  
                 end: Alignment.bottomLeft,
               ),
               borderRadius: BorderRadius.circular(20),
