@@ -58,53 +58,41 @@ Flutter UI
 
 ---
 
-# 🖼️ App Preview
+## 🖼️ App Preview
 
 > Screenshots of the Weatherly application.
 
 ### 🌅 Splash Screen
 
-![Weatherly Splash Screen](docs/screenshots/01-splash_screen.png)
-
----
+<img src="docs/screenshots/01-splash_screen.png" width="220"/>
 
 ### 👋 Onboarding
 
-![Weatherly Onboarding](docs/screenshots/02-onboarding_screen.png)
-
----
+<img src="docs/screenshots/02-onboarding_screen.png" width="220"/>
 
 ### 🏠 Home
 
-![Weatherly Home](docs/screenshots/03-home_screen.png)
-
----
+<img src="docs/screenshots/03-home_screen.png" width="220"/>
 
 ### 🔍 Search
 
-![Weatherly Search](docs/screenshots/04-search_screen.png)
-
----
+<img src="docs/screenshots/04-search_screen.png" width="220"/>
 
 ### 🌤️ Weather Details
 
-![Weatherly Weather Details](docs/screenshots/05-weather_details.png)
-
----
+<img src="docs/screenshots/05-weather_details.png" width="220"/>
 
 ### ⚙️ Settings
 
-![Weatherly Settings](docs/screenshots/06-setting_screen.png)
+<img src="docs/screenshots/06-setting_screen.png" width="220"/>
 
-#### ℹ️ About Weatherly
+### ℹ️ About Weatherly
 
-![Weatherly Settings Info](docs/screenshots/07-setting_info_screen.png)
-
----
+<img src="docs/screenshots/07-setting_info_screen.png" width="220"/>
 
 ### 💨 Error State
 
-![Weatherly Error State](docs/screenshots/08-error_state.png)
+<img src="docs/screenshots/08-error_state.png" width="220"/>
 
 ---
 
