@@ -300,7 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onPressed: widget.onSettingsTap,
                         icon: const Icon(
                           Icons.settings_outlined,
-                          color: Colors.white,
+                          color: C,
                         ),
                       ),
                     ),
@@ -354,7 +354,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Good Morning,\nAnsh! 👋",
+              "Good Morning 👋",
               style: TextStyle(
                 fontSize: 34,
                 fontWeight: FontWeight.bold,
